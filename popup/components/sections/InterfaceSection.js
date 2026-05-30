@@ -1,4 +1,4 @@
-import { KeyInterFont, KeySearchBar, KeyTitleNotifications, KeyTransparentSearch, KeyTweetButton } from "../../../storage-keys";
+import { KeyChatDrawerButton, KeyInterFont, KeySearchBar, KeyTitleNotifications, KeyTransparentSearch, KeyTweetButton } from "../../../storage-keys";
 import SectionLabel from "../ui/SectionLabel";
 import SwitchControl from "../ui/SwitchControl";
 
@@ -13,6 +13,7 @@ const InterfaceSection = () => (
             <SwitchControl label="Search Bar" storageKey={KeySearchBar} />
             <SwitchControl label="Transparent Search Bar" storageKey={KeyTransparentSearch} />
             <SwitchControl label="Tweet Button" storageKey={KeyTweetButton} />
+            <SwitchControl label="Chat Drawer Button" storageKey={KeyChatDrawerButton} />
             <SwitchControl label="Notifications in Title" storageKey={KeyTitleNotifications} />
           </div>
         </div>

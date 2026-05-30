@@ -10,6 +10,7 @@ import {
   KeyBookmarksButton,
   KeyCommunitiesButton,
   KeyCreatorStudioButton,
+  KeyChatDrawerButton,
   KeyCustomCss,
   KeyExploreButton,
   KeyFollowCount,
@@ -58,7 +59,14 @@ import {
 import { changeCustomCss } from "../options/customCss";
 import { changeFollowingAndFollowersCounts, changeLikeCount, changeReplyCount, changeRetweetCount } from "../options/hideVanityCounts";
 import changeHideViewCounts from "../options/hideViewCount";
-import { changeHideSearchBar, changeInterFont, changeTitleNotifications, changeTransparentSearchBar, changeTweetButton } from "../options/interface";
+import {
+  changeChatDrawerButton,
+  changeHideSearchBar,
+  changeInterFont,
+  changeTitleNotifications,
+  changeTransparentSearchBar,
+  changeTweetButton,
+} from "../options/interface";
 import {
   changeAnalyticsButton,
   changeArticlesButton,
@@ -132,6 +140,7 @@ export const staticFeatures = {
     changeTransparentSearchBar(data[KeyTransparentSearch]);
     changeTitleNotifications(data[KeyTitleNotifications]);
     changeTweetButton(data[KeyTweetButton]);
+    changeChatDrawerButton(data[KeyChatDrawerButton]);
   },
   sidebar: (data) => {
     changeHomeButton(data[KeyHomeButton]);

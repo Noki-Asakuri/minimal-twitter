@@ -89,6 +89,26 @@ export const changeTweetButton = (tweetButton) => {
   }
 };
 
+export const changeChatDrawerButton = (chatDrawerButton) => {
+  switch (chatDrawerButton) {
+    case "off":
+      addStyles(
+        "chatDrawerButton",
+        `
+        ${selectors.chatDrawerButton} {
+          display: none !important;
+          visibility: hidden !important;
+        }
+        `
+      );
+      break;
+
+    case "on":
+      removeStyles("chatDrawerButton");
+      break;
+  }
+};
+
 export const changeHideSearchBar = (searchBar) => {
   switch (searchBar) {
     case "off":

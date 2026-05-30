@@ -34,6 +34,7 @@ export const KeyRetweetCount = "retweetCount";
 export const KeyLikeCount = "likeCount";
 export const KeyFollowCount = "followCount";
 export const KeyTweetButton = "tweetButton";
+export const KeyChatDrawerButton = "chatDrawerButton";
 export const KeySearchBar = "searchBar";
 export const KeyTransparentSearch = "transparentSearch";
 export const KeyRemovePromotedPosts = "removePromotedPosts";
@@ -85,6 +86,7 @@ export const allSettingsKeys = [
   KeyTransparentSearch,
   KeyTitleNotifications,
   KeyTweetButton,
+  KeyChatDrawerButton,
 
   // Sidebar Features
   KeyHomeButton,
@@ -153,6 +155,7 @@ export const defaultPreferences = {
   [KeyTransparentSearch]: "off",
   [KeyTitleNotifications]: "on",
   [KeyTweetButton]: "on",
+  [KeyChatDrawerButton]: "on",
 
   // Sidebar Features
   [KeyHomeButton]: "on",
