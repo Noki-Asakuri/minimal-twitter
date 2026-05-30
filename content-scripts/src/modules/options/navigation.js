@@ -1,6 +1,6 @@
 import selectors from "../../selectors";
 import svgAssets from "../svgAssets";
-import addStyles, { removeStyles } from "../utilities/addStyles";
+import addStyles, { removeStyles, stylesExist } from "../utilities/addStyles";
 import { createTypefullyUrl } from "../utilities/createTypefullyUrl";
 import { addSidebarButton } from "../utilities/sidebar";
 
@@ -167,9 +167,10 @@ export const changeNavigationButtonsLabels = async (setting) => {
 
   if (isMessagesPage || isSearchPage) {
     removeStyles("navigation-position");
-    addStyles(
-      "customDMsAndSearchStyle",
-      `
+    if (!stylesExist("customDMsAndSearchStyle")) {
+      addStyles(
+        "customDMsAndSearchStyle",
+        `
 ${selectors.leftSidebar} {
 flex: 0.5 1 auto;
 }
@@ -182,7 +183,8 @@ ${selectors.mainWrapper} {
 align-items: flex-start;
 }
 `
-    );
+      );
+    }
   } else {
     removeStyles("customDMsAndSearchStyle");
   }
