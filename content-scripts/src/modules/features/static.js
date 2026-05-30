@@ -35,6 +35,9 @@ import {
   KeyReplyCount,
   KeyRetweetCount,
   KeySearchBar,
+  KeySendViaChatShareMenu,
+  KeySendViaDirectMessageShareMenu,
+  KeySharePostViaShareMenu,
   KeySidebarLogo,
   KeyStickyHeader,
   KeyTimelineWidth,
@@ -90,6 +93,7 @@ import {
 } from "../options/timeline";
 import { changeTypefullyEnhancementsButtons } from "../options/typefully";
 import { changeWriterMode } from "../options/writerMode";
+import { changeSendViaChatShareMenu, changeSendViaDirectMessageShareMenu, changeSharePostViaShareMenu } from "../options/shareMenu";
 
 export const staticFeatures = {
   timeline: (data) => {
@@ -144,6 +148,11 @@ export const staticFeatures = {
   },
   advanced: (data) => {
     changeCustomCss(data[KeyCustomCss]);
+  },
+  shareMenu: (data) => {
+    changeSendViaDirectMessageShareMenu(data[KeySendViaDirectMessageShareMenu]);
+    changeSendViaChatShareMenu(data[KeySendViaChatShareMenu]);
+    changeSharePostViaShareMenu(data[KeySharePostViaShareMenu]);
   },
 };
 

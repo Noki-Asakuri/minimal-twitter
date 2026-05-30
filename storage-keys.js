@@ -43,6 +43,9 @@ export const KeyTitleNotifications = "titleNotifications";
 export const KeyCustomCss = "customCss";
 export const KeyHideViewCount = "hideViewCount";
 export const KeyHideGrokDrawer = "hideGrokDrawer";
+export const KeySendViaChatShareMenu = "sendViaChatShareMenu";
+export const KeySendViaDirectMessageShareMenu = "sendViaDirectMessageShareMenu";
+export const KeySharePostViaShareMenu = "sharePostViaShareMenu";
 
 export const allSettingsKeys = [
   // Extension Status
@@ -97,6 +100,11 @@ export const allSettingsKeys = [
   KeyVerifiedOrgsButton,
   KeyTypefullyGrowTab,
   KeyProfileButton,
+
+  // Share Menu Features
+  KeySendViaDirectMessageShareMenu,
+  KeySendViaChatShareMenu,
+  KeySharePostViaShareMenu,
 
   // Advanced Features
   KeyCustomCss,
@@ -158,6 +166,11 @@ export const defaultPreferences = {
   [KeyVerifiedOrgsButton]: "off",
   [KeyTypefullyGrowTab]: "on",
   [KeyProfileButton]: "on",
+
+  // Share Menu Features
+  [KeySendViaDirectMessageShareMenu]: "on",
+  [KeySendViaChatShareMenu]: "on",
+  [KeySharePostViaShareMenu]: "on",
 
   // Advanced Features
   [KeyCustomCss]: "",
