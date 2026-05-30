@@ -15,6 +15,7 @@ selectors.sidebarLinks = {
   notifications: `${selectors.leftSidebar} [data-testid="AppTabBar_Notifications_Link"]`,
   messages: `${selectors.leftSidebar} [data-testid="AppTabBar_DirectMessage_Link"]`,
   bookmarks: `${selectors.leftSidebar} a[href*="bookmarks"]`,
+  creatorStudio: `${selectors.leftSidebar} a[href*="/i/jf/creators/studio"][role="link"][aria-label]`,
   jobs: `${selectors.leftSidebar} a[href*="jobs"]`,
   articles: 'a[href="/compose/articles"]',
   topics: `${selectors.leftSidebar} a[href*=topics]`,
@@ -26,6 +27,7 @@ selectors.sidebarLinks = {
   verifiedOrgs: `${selectors.leftSidebar} a[href*="verified-orgs"][role="link"][aria-label]`,
   analytics: `${selectors.leftSidebar} .mt-sidebar-button[aria-label="Analytics"]`,
   grok: `${selectors.leftSidebar} a[href*="grok"][role="link"][aria-label]`,
+  more: `${selectors.leftSidebar} [data-testid="AppTabBar_More_Menu"]`,
 };
 selectors.accountSwitcherButton = `[data-testid="SideNav_AccountSwitcher_Button"]`;
 selectors.leftSidebarLabel = `${selectors.leftSidebarLinks} > * > div > div + div:last-child`;

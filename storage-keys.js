@@ -20,8 +20,10 @@ export const KeyExploreButton = "exploreButton";
 export const KeyNotificationsButton = "notificationsButton";
 export const KeyMessagesButton = "messagesButton";
 export const KeyBookmarksButton = "bookmarksButton";
+export const KeyCreatorStudioButton = "creatorStudioButton";
 export const KeyJobsButton = "jobsButton";
 export const KeyArticlesButton = "articles";
+export const KeyMoreButton = "moreButton";
 export const KeyProfileButton = "profileButton";
 export const KeyNavigationButtonsLabels = "navigationButtonsLabels";
 export const KeyNavigationCenter = "navigationCenter";
@@ -93,6 +95,7 @@ export const allSettingsKeys = [
   KeyXPremiumButton,
   KeyListsButton,
   KeyBookmarksButton,
+  KeyCreatorStudioButton,
   KeyJobsButton,
   KeyCommunitiesButton,
   KeyArticlesButton,
@@ -100,6 +103,7 @@ export const allSettingsKeys = [
   KeyVerifiedOrgsButton,
   KeyTypefullyGrowTab,
   KeyProfileButton,
+  KeyMoreButton,
 
   // Share Menu Features
   KeySendViaDirectMessageShareMenu,
@@ -159,6 +163,7 @@ export const defaultPreferences = {
   [KeyXPremiumButton]: "off",
   [KeyListsButton]: "on",
   [KeyBookmarksButton]: "on",
+  [KeyCreatorStudioButton]: "on",
   [KeyJobsButton]: "off",
   [KeyCommunitiesButton]: "on",
   [KeyArticlesButton]: "off",
@@ -166,6 +171,7 @@ export const defaultPreferences = {
   [KeyVerifiedOrgsButton]: "off",
   [KeyTypefullyGrowTab]: "on",
   [KeyProfileButton]: "on",
+  [KeyMoreButton]: "on",
 
   // Share Menu Features
   [KeySendViaDirectMessageShareMenu]: "on",

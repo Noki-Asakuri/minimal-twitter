@@ -9,6 +9,7 @@ import {
   KeyArticlesButton,
   KeyBookmarksButton,
   KeyCommunitiesButton,
+  KeyCreatorStudioButton,
   KeyCustomCss,
   KeyExploreButton,
   KeyFollowCount,
@@ -22,6 +23,7 @@ import {
   KeyLikeCount,
   KeyListsButton,
   KeyMessagesButton,
+  KeyMoreButton,
   KeyNavigationButtonsLabels,
   KeyNavigationCenter,
   KeyNotificationsButton,
@@ -62,12 +64,14 @@ import {
   changeArticlesButton,
   changeBookmarksButton,
   changeCommunitiesButton,
+  changeCreatorStudioButton,
   changeExploreButton,
   changeGrokButton,
   changeHomeButton,
   changeJobsButton,
   changeListsButton,
   changeMessagesButton,
+  changeMoreButton,
   changeNavigationButtonsLabels,
   changeNavigationCenter,
   changeNotificationsButton,
@@ -135,6 +139,7 @@ export const staticFeatures = {
     changeNotificationsButton(data[KeyNotificationsButton]);
     changeMessagesButton(data[KeyMessagesButton]);
     changeBookmarksButton(data[KeyBookmarksButton]);
+    changeCreatorStudioButton(data[KeyCreatorStudioButton]);
     changeJobsButton(data[KeyJobsButton]);
     changeArticlesButton(data[KeyArticlesButton]);
     changeCommunitiesButton(data[KeyCommunitiesButton]);
@@ -145,6 +150,7 @@ export const staticFeatures = {
     changeGrokButton(data[KeyGrokButton]);
     changeVerifiedOrgsButton(data[KeyVerifiedOrgsButton]);
     changeAnalyticsButton(data[KeyTypefullyGrowTab]);
+    changeMoreButton(data[KeyMoreButton]);
   },
   advanced: (data) => {
     changeCustomCss(data[KeyCustomCss]);
