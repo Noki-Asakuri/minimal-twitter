@@ -1,10 +1,24 @@
 {
   "name": "minimal-twitter",
+  "private": true,
   "type": "module",
+  "packageManager": "bun@1.3.14",
+  "workspaces": [
+    "content-scripts",
+    "popup"
+  ],
   "scripts": {
-    "build": "node ./bundle-extension.js",
-    "bundle": "node ./bundle-extension.js",
-    "bump-version": "node ./bump-version.js"
+    "build": "bun ./bundle-extension.js",
+    "bundle": "bun ./bundle-extension.js",
+    "build:chrome": "bun ./bundle-extension.js Chrome",
+    "build:firefox": "bun ./bundle-extension.js Firefox",
+    "build:safari": "bun ./bundle-extension.js Safari",
+    "bump-version": "bun ./bump-version.js",
+    "content-scripts:build": "bun run --cwd content-scripts build",
+    "content-scripts:watch": "bun run --cwd content-scripts watch",
+    "popup:build": "bun run --cwd popup build",
+    "popup:dev": "bun run --cwd popup dev",
+    "popup:lint": "bun run --cwd popup lint"
   },
   "dependencies": {
     "fs-extra": "^11.1.0",

@@ -16,6 +16,27 @@ const runCommand = (command, yes) =>
     });
   });
 
+const canRenderSpinner =
+  typeof process.stdout.clearLine === "function" &&
+  typeof process.stdout.cursorTo === "function";
+
+const clearSpinnerLine = () => {
+  if (!canRenderSpinner) {
+    return;
+  }
+
+  process.stdout.clearLine();
+  process.stdout.cursorTo(0);
+};
+
+const renderSpinner = (message) => {
+  if (!canRenderSpinner) {
+    return;
+  }
+
+  process.stdout.write(message);
+};
+
 let manifest = {
   name: "Minimal Theme for Twitter / X",
   short_name: "Minimal Twitter",
@@ -126,27 +147,31 @@ const bundle = async (manifest, bundleDirectory) => {
     await rm(bundleDirectory, { recursive: true, force: true }); // requires node 14+
     console.log(`🧹  Cleaned up \`${bundleDirectory}\` directory.`);
 
-    // Run both build scripts
+    // Install workspace dependencies and run both build scripts
+    await runCommand("bun install");
+
     const runBuildScript = (directory) => {
       return new Promise(async (resolve, reject) => {
         let intervalId;
         let spinner = "\\";
         const startBuilding = () => {
+          if (!canRenderSpinner) {
+            console.log("Building popup and content scripts...");
+            return;
+          }
+
           let P = ["\\", "|", "/", "-"];
           intervalId = setInterval(() => {
-            process.stdout.clearLine();
-            process.stdout.cursorTo(0);
+            clearSpinnerLine();
             spinner = P[P.indexOf(spinner) + 1] || P[0];
-            process.stdout.write(
-              `${spinner}   Building popup and content scripts...`
-            );
+            renderSpinner(`${spinner}   Building popup and content scripts...`);
           }, 250);
         };
 
         startBuilding();
 
         try {
-          await runCommand(`cd ./${directory} && yarn && yarn build`);
+          await runCommand(`bun run --cwd ./${directory} build`);
           clearInterval(intervalId);
           resolve();
         } catch (error) {
@@ -162,8 +187,7 @@ const bundle = async (manifest, bundleDirectory) => {
     await runBuildScript("popup");
     await runBuildScript("content-scripts");
 
-    process.stdout.clearLine();
-    process.stdout.cursorTo(0);
+    clearSpinnerLine();
     console.log("🔥  Built popup and content scripts.");
 
     // Bundle popup Next.js export
@@ -214,6 +238,7 @@ const bundle = async (manifest, bundleDirectory) => {
     );
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
@@ -221,6 +246,64 @@ const bundleAll = async () => {
   await bundle(MANIFEST_CHROME, "bundle/chrome");
   await bundle(MANIFEST_FIREFOX, "bundle/firefox");
 };
+
+const bundleBrowser = async (browser) => {
+  switch (browser.toLowerCase()) {
+    case "chrome":
+      await bundle(MANIFEST_CHROME, "bundle/chrome");
+      break;
+
+    case "firefox":
+      await bundle(MANIFEST_FIREFOX, "bundle/firefox");
+      break;
+
+    case "safari":
+      await bundle(MANIFEST_FIREFOX, "bundle/firefox");
+
+      let intervalId;
+      let spinner = "\\";
+      const startBuilding = () => {
+        if (!canRenderSpinner) {
+          console.log("Bundling Safari...");
+          return;
+        }
+
+          let P = ["\\", "|", "/", "-"];
+          intervalId = setInterval(() => {
+            clearSpinnerLine();
+            spinner = P[P.indexOf(spinner) + 1] || P[0];
+            renderSpinner(`${spinner}   Bundling Safari...`);
+          }, 250);
+      };
+
+      startBuilding();
+
+      await runCommand(generateSafariProjectCommand, true);
+      await runCommand(fixBundleIdentifierCommand, true);
+
+      clearInterval(intervalId);
+      break;
+
+    case "all":
+      await bundleAll();
+      break;
+
+    default:
+      await bundleAll();
+  }
+};
+
+const generateSafariProjectCommand = `xcrun safari-web-extension-converter bundle/firefox --project-location bundle/safari --app-name 'Minimal Twitter' --bundle-identifier 'com.typefully.minimal-twitter'`;
+
+// The first command currently ignores the full --bundle-identifier flag (it still take the company name), so a replace is required to make sure it matches our bundle identifier
+const fixBundleIdentifierCommand = `find "bundle/safari/Minimal Twitter" \\( -name "*.swift" -or -name "*.pbxproj" \\) -type f -exec sed -i '' 's/com.typefully.Minimal-Twitter/com.typefully.minimal-twitter/g' {} +`;
+
+const browserArg = process.argv[2]?.trim();
+
+if (browserArg) {
+  await bundleBrowser(browserArg);
+  process.exit(0);
+}
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -230,45 +313,7 @@ const rl = readline.createInterface({
 rl.question(
   "Which browser would you like to bundle for? [All / Chrome / Firefox / Safari] ",
   async (browser) => {
-    switch (browser) {
-      case "Chrome":
-        await bundle(MANIFEST_CHROME, "bundle/chrome");
-        break;
-
-      case "Firefox":
-        await bundle(MANIFEST_FIREFOX, "bundle/firefox");
-        break;
-
-      case "Safari":
-        await bundle(MANIFEST_FIREFOX, "bundle/firefox");
-
-        let intervalId;
-        let spinner = "\\";
-        const startBuilding = () => {
-          let P = ["\\", "|", "/", "-"];
-          intervalId = setInterval(() => {
-            process.stdout.clearLine();
-            process.stdout.cursorTo(0);
-            spinner = P[P.indexOf(spinner) + 1] || P[0];
-            process.stdout.write(`${spinner}   Bundling Safari...`);
-          }, 250);
-        };
-
-        startBuilding();
-
-        await runCommand(generateSafariProjectCommand, true);
-        await runCommand(fixBundleIdentifierCommand, true);
-
-        clearInterval(intervalId);
-        break;
-
-      case "All":
-        await bundleAll();
-        break;
-
-      default:
-        await bundleAll();
-    }
+    await bundleBrowser(browser);
 
     rl.close();
   }
@@ -277,11 +322,6 @@ rl.question(
 rl.on("close", () => {
   process.exit(0);
 });
-
-const generateSafariProjectCommand = `xcrun safari-web-extension-converter bundle/firefox --project-location bundle/safari --app-name 'Minimal Twitter' --bundle-identifier 'com.typefully.minimal-twitter'`;
-
-// The first command currently ignores the full --bundle-identifier flag (it still take the company name), so a replace is required to make sure it matches our bundle identifier
-const fixBundleIdentifierCommand = `find "bundle/safari/Minimal Twitter" \\( -name "*.swift" -or -name "*.pbxproj" \\) -type f -exec sed -i '' 's/com.typefully.Minimal-Twitter/com.typefully.minimal-twitter/g' {} +`;
 
 /*--- Bundle without prompting
 await bundleAll();

@@ -4,9 +4,9 @@ If you have a good idea, [start a discussion](https://github.com/typefully/minim
 
 ## Development / Building / Bundling the Extension
 
-First, you must have [classic yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) installed.
+First, you must have [Bun](https://bun.sh/docs/installation) installed.
 
-✨ **New**: `bundle-extension.js` now bundles and zips everything. Run `yarn && yarn bundle` at the root directory and you'll get a [bundle](../bundle) directory that looks like this:
+✨ **New**: `bundle-extension.js` now bundles and zips everything. Run `bun install && bun run bundle` at the root directory and you'll get a [bundle](../bundle) directory that looks like this:
 
 ```
 📂 bundle
@@ -25,8 +25,8 @@ cd popup
 ```
 
 ```sh
-yarn # must run yarn once first before you can build
-yarn build # to build and export Next.js app
+bun install # must run bun install once first before you can build
+bun run build # to build and export Next.js app
 ```
 
 ### Content Scripts
@@ -38,9 +38,9 @@ cd content-scripts
 ```
 
 ```sh
-yarn # must run yarn once first before you can build
-yarn build # to build the content_scripts
-yarn watch # watch for changes and build automatically
+bun install # must run bun install once first before you can build
+bun run build # to build the content_scripts
+bun run watch # watch for changes and build automatically
 ```
 
 After you have built both `popup` and `content-scripts` you can bundle the extension for `Chrome`, `Firefox`, and `Safari`:
@@ -52,8 +52,8 @@ cd .. # go back to the root directory
 ```
 
 ```sh
-yarn # must run yarn once first before you can bundle
-yarn bundle # Runs the `bundle-extension.js` script
+bun install # must run bun install once first before you can bundle
+bun run bundle # Runs the `bundle-extension.js` script
 ```
 
 ## Load Extension
