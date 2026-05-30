@@ -1,5 +1,7 @@
 import {
   KeyFollowingTimeline,
+  KeyHideOldReposts,
+  KeyHideSameAuthorReposts,
   KeyHideViewCount,
   KeyRecentMedia,
   KeyRemovePromotedPosts,
@@ -38,6 +40,8 @@ const TimelineSection = () => {
           <SectionLabel>Remove Distracting Elements</SectionLabel>
           <VanityCheckboxes />
           <LocalStorageCheckboxControl label="View Count from Tweets" storageKey={KeyHideViewCount} crossedIcon />
+          <LocalStorageCheckboxControl label="Reposts from Same Author" storageKey={KeyHideSameAuthorReposts} crossedIcon />
+          <LocalStorageCheckboxControl label="Reposts Older Than a Year" storageKey={KeyHideOldReposts} crossedIcon />
           <LocalStorageCheckboxControl label="Promoted Posts" storageKey={KeyRemovePromotedPosts} crossedIcon />
           <LocalStorageCheckboxControl label="Topics to Follow Suggestions" storageKey={KeyRemoveTopicsToFollow} crossedIcon />
           <LocalStorageCheckboxControl label={`Timeline Tabs (For you, Following, lists...)`} storageKey={KeyRemoveTimelineTabs} crossedIcon />

@@ -17,6 +17,8 @@ import {
   KeyFollowingTimeline,
   KeyGrokButton,
   KeyHideGrokDrawer,
+  KeyHideOldReposts,
+  KeyHideSameAuthorReposts,
   KeyHideViewCount,
   KeyHomeButton,
   KeyInterFont,
@@ -106,6 +108,7 @@ import {
 import { changeTypefullyEnhancementsButtons } from "../options/typefully";
 import { changeWriterMode } from "../options/writerMode";
 import { changeSendViaChatShareMenu, changeSendViaDirectMessageShareMenu, changeSharePostViaShareMenu } from "../options/shareMenu";
+import { changeRepostFilters } from "../options/reposts";
 
 export const staticFeatures = {
   timeline: (data) => {
@@ -116,6 +119,10 @@ export const staticFeatures = {
     changeWriterMode(data[KeyWriterMode]);
     changeFollowingTimeline(data[KeyFollowingTimeline]);
     changeHideViewCounts(data[KeyHideViewCount]);
+    changeRepostFilters({
+      hideSameAuthorReposts: data[KeyHideSameAuthorReposts],
+      hideOldReposts: data[KeyHideOldReposts],
+    });
     changeRecentMedia(data[KeyRecentMedia]);
     changeTrendsHomeTimeline(data[KeyTrendsHomeTimeline], data[KeyWriterMode]);
     changePromotedPosts(data[KeyRemovePromotedPosts]);

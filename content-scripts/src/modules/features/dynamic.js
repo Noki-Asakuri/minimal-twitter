@@ -12,6 +12,8 @@ import {
   KeyCommunitiesButton,
   KeyFollowingTimeline,
   KeyHideGrokDrawer,
+  KeyHideOldReposts,
+  KeyHideSameAuthorReposts,
   KeyHideViewCount,
   KeyListsButton,
   KeyRemoveTimelineTabs,
@@ -26,6 +28,7 @@ import changeHideViewCounts from "../options/hideViewCount";
 import { addAnalyticsButton, addCommunitiesButton, addListsButton, addTopicsButton, addXPremiumButton, hideGrokDrawer, changeNavigationButtonsLabels } from "../options/navigation";
 import { changeFollowingTimeline, changeRecentMedia, changeTimelineTabs, changeTrendsHomeTimeline, enableGrokDrawerOnGrokButtonClick } from "../options/timeline";
 import { changeWriterMode } from "../options/writerMode";
+import { filterReposts } from "../options/reposts";
 import { addTypefullyComposerPlug, addTypefullyReplyPlug, saveCurrentReplyToLink, addTypefullySecurityAndAccountAccessPlug, addTypefullySchedulePlug } from "../typefullyPlugs";
 import hideRightSidebar from "../utilities/hideRightSidebar";
 import { updateLeftSidebarPositioning } from "../utilities/leftSidebarPosition";
@@ -35,9 +38,13 @@ import throttle from "../utilities/throttle";
 
 export const dynamicFeatures = {
   general: async () => {
-    const data = await getStorage([KeyHideViewCount, KeyHideGrokDrawer]);
+    const data = await getStorage([KeyHideViewCount, KeyHideGrokDrawer, KeyHideSameAuthorReposts, KeyHideOldReposts]);
 
     changeHideViewCounts(data[KeyHideViewCount]);
+    filterReposts({
+      hideSameAuthorReposts: data[KeyHideSameAuthorReposts],
+      hideOldReposts: data[KeyHideOldReposts],
+    });
     changeRecentMedia();
     hideRightSidebar();
     addSmallerSearchBarStyle();

@@ -40,6 +40,8 @@ export const KeyTransparentSearch = "transparentSearch";
 export const KeyRemovePromotedPosts = "removePromotedPosts";
 export const KeyRemoveTopicsToFollow = "removeTopicsToFollow";
 export const KeyRecentMedia = "recentMedia";
+export const KeyHideSameAuthorReposts = "hideSameAuthorReposts";
+export const KeyHideOldReposts = "hideOldReposts";
 export const KeyTypefullyEnhancementsButtons = "typefullyEnhancementsButtons";
 export const KeyInterFont = "interFont";
 export const KeyTitleNotifications = "titleNotifications";
@@ -62,6 +64,8 @@ export const allSettingsKeys = [
   KeyWriterMode,
   KeyFollowingTimeline,
   KeyHideViewCount,
+  KeyHideSameAuthorReposts,
+  KeyHideOldReposts,
   KeyRecentMedia,
   KeyTrendsHomeTimeline,
   KeyRemovePromotedPosts,
@@ -131,6 +135,8 @@ export const defaultPreferences = {
   [KeyWriterMode]: "off",
   [KeyFollowingTimeline]: "off",
   [KeyHideViewCount]: "off",
+  [KeyHideSameAuthorReposts]: "off",
+  [KeyHideOldReposts]: "off",
   [KeyRecentMedia]: "off",
   [KeyTrendsHomeTimeline]: "off",
   [KeyRemovePromotedPosts]: "on",
