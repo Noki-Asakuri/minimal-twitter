@@ -40,6 +40,8 @@ import {
   KeyReplyCount,
   KeyRetweetCount,
   KeySearchBar,
+  KeyDownloadVideoShareMenu,
+  KeyPostVideoShareMenu,
   KeySendViaChatShareMenu,
   KeySendViaDirectMessageShareMenu,
   KeySharePostViaShareMenu,
@@ -107,7 +109,13 @@ import {
 } from "../options/timeline";
 import { changeTypefullyEnhancementsButtons } from "../options/typefully";
 import { changeWriterMode } from "../options/writerMode";
-import { changeSendViaChatShareMenu, changeSendViaDirectMessageShareMenu, changeSharePostViaShareMenu } from "../options/shareMenu";
+import {
+  changeDownloadVideoShareMenu,
+  changePostVideoShareMenu,
+  changeSendViaChatShareMenu,
+  changeSendViaDirectMessageShareMenu,
+  changeSharePostViaShareMenu,
+} from "../options/shareMenu";
 import { changeRepostFilters } from "../options/reposts";
 
 export const staticFeatures = {
@@ -175,6 +183,8 @@ export const staticFeatures = {
     changeSendViaDirectMessageShareMenu(data[KeySendViaDirectMessageShareMenu]);
     changeSendViaChatShareMenu(data[KeySendViaChatShareMenu]);
     changeSharePostViaShareMenu(data[KeySharePostViaShareMenu]);
+    changePostVideoShareMenu(data[KeyPostVideoShareMenu]);
+    changeDownloadVideoShareMenu(data[KeyDownloadVideoShareMenu]);
   },
 };
 

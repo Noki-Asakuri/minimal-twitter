@@ -1,4 +1,10 @@
-import { KeySendViaChatShareMenu, KeySendViaDirectMessageShareMenu, KeySharePostViaShareMenu } from "../../../storage-keys";
+import {
+  KeyDownloadVideoShareMenu,
+  KeyPostVideoShareMenu,
+  KeySendViaChatShareMenu,
+  KeySendViaDirectMessageShareMenu,
+  KeySharePostViaShareMenu,
+} from "../../../storage-keys";
 import SectionLabel from "../ui/SectionLabel";
 import SwitchControl from "../ui/SwitchControl";
 
@@ -12,6 +18,8 @@ const ShareMenuSection = () => (
             <SwitchControl label="Send via Direct Message" storageKey={KeySendViaDirectMessageShareMenu} />
             <SwitchControl label="Send via Chat" storageKey={KeySendViaChatShareMenu} />
             <SwitchControl label="Share post via..." storageKey={KeySharePostViaShareMenu} />
+            <SwitchControl label="Post Video" storageKey={KeyPostVideoShareMenu} />
+            <SwitchControl label="Download Video" storageKey={KeyDownloadVideoShareMenu} />
           </div>
         </div>
       </form>

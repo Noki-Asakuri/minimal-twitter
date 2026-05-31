@@ -51,6 +51,8 @@ export const KeyHideGrokDrawer = "hideGrokDrawer";
 export const KeySendViaChatShareMenu = "sendViaChatShareMenu";
 export const KeySendViaDirectMessageShareMenu = "sendViaDirectMessageShareMenu";
 export const KeySharePostViaShareMenu = "sharePostViaShareMenu";
+export const KeyPostVideoShareMenu = "postVideoShareMenu";
+export const KeyDownloadVideoShareMenu = "downloadVideoShareMenu";
 
 export const allSettingsKeys = [
   // Extension Status
@@ -115,6 +117,8 @@ export const allSettingsKeys = [
   KeySendViaDirectMessageShareMenu,
   KeySendViaChatShareMenu,
   KeySharePostViaShareMenu,
+  KeyPostVideoShareMenu,
+  KeyDownloadVideoShareMenu,
 
   // Advanced Features
   KeyCustomCss,
@@ -186,6 +190,8 @@ export const defaultPreferences = {
   [KeySendViaDirectMessageShareMenu]: "on",
   [KeySendViaChatShareMenu]: "on",
   [KeySharePostViaShareMenu]: "on",
+  [KeyPostVideoShareMenu]: "on",
+  [KeyDownloadVideoShareMenu]: "on",
 
   // Advanced Features
   [KeyCustomCss]: "",
