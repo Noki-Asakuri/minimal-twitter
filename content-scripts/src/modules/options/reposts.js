@@ -1,35 +1,41 @@
 import selectors from "../../selectors";
-import { KeyHideOldReposts, KeyHideSameAuthorReposts } from "../../../../storage-keys";
+import { KeyHideOldReposts, KeyHideReactionTweets, KeyHideSameAuthorReposts } from "../../../../storage-keys";
 import { getStorage } from "../utilities/storage";
 
 const HIDDEN_REPOST_CLASS = "mt-hidden-repost";
 const SAME_AUTHOR_REPOST_CLASS = "mt-hidden-same-author-repost";
 const OLD_REPOST_CLASS = "mt-hidden-old-repost";
+const REACTION_TWEET_CLASS = "mt-hidden-reaction-tweet";
 const ONE_YEAR_IN_MS = 365 * 24 * 60 * 60 * 1000;
 
 export async function changeRepostFilters(settings = {}) {
-  const savedSettings = await getStorage([KeyHideSameAuthorReposts, KeyHideOldReposts]);
+  const savedSettings = await getStorage([KeyHideSameAuthorReposts, KeyHideOldReposts, KeyHideReactionTweets]);
 
   filterReposts({
     hideSameAuthorReposts: settings.hideSameAuthorReposts ?? savedSettings[KeyHideSameAuthorReposts],
     hideOldReposts: settings.hideOldReposts ?? savedSettings[KeyHideOldReposts],
+    hideReactionTweets: settings.hideReactionTweets ?? savedSettings[KeyHideReactionTweets],
   });
 }
 
 export function filterReposts(settings = {}) {
   const hideSameAuthorReposts = settings.hideSameAuthorReposts === "on";
   const hideOldReposts = settings.hideOldReposts === "on";
+  const hideReactionTweets = settings.hideReactionTweets === "on";
 
   document.querySelectorAll(selectors.tweet).forEach((tweet) => {
     const shouldHideSameAuthorRepost = hideSameAuthorReposts && isSameAuthorRepost(tweet);
     const shouldHideOldRepost = hideOldReposts && isOldRepost(tweet);
+    const shouldHideReactionTweet = hideReactionTweets && isReactionTweet(tweet);
     const wasHiddenByRepostFilter = tweet.classList.contains(HIDDEN_REPOST_CLASS);
+    const shouldHideTweet = shouldHideSameAuthorRepost || shouldHideOldRepost || shouldHideReactionTweet;
 
     tweet.classList.toggle(SAME_AUTHOR_REPOST_CLASS, shouldHideSameAuthorRepost);
     tweet.classList.toggle(OLD_REPOST_CLASS, shouldHideOldRepost);
-    tweet.classList.toggle(HIDDEN_REPOST_CLASS, shouldHideSameAuthorRepost || shouldHideOldRepost);
+    tweet.classList.toggle(REACTION_TWEET_CLASS, shouldHideReactionTweet);
+    tweet.classList.toggle(HIDDEN_REPOST_CLASS, shouldHideTweet);
 
-    if (shouldHideSameAuthorRepost || shouldHideOldRepost) {
+    if (shouldHideTweet) {
       tweet.style.display = "none";
     } else if (wasHiddenByRepostFilter) {
       tweet.style.display = "";
@@ -62,6 +68,10 @@ function getRepostUsernames(tweet) {
 
 function isRepost(tweet) {
   return getRepostContextLinks(tweet).length > 0 || getRepostContextElements(tweet).length > 0;
+}
+
+function isReactionTweet(tweet) {
+  return Array.from(tweet.querySelectorAll('[data-testid="videoReactionAttribution"], [aria-label]')).some((element) => includesReactionText(element.textContent) || includesReactionText(element.getAttribute("aria-label")));
 }
 
 function getRepostContextLinks(tweet) {
@@ -99,6 +109,10 @@ function hasRepostContextAncestor(tweet, link) {
 function includesRepostText(text) {
   const normalizedText = text?.toLowerCase() || "";
   return normalizedText.includes("reposted") || normalizedText.includes("retweeted");
+}
+
+function includesReactionText(text) {
+  return text?.trim().toLowerCase().startsWith("reaction to") || false;
 }
 
 function getTweetAuthorUsername(tweet) {

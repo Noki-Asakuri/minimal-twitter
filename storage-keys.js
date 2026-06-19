@@ -42,6 +42,7 @@ export const KeyRemoveTopicsToFollow = "removeTopicsToFollow";
 export const KeyRecentMedia = "recentMedia";
 export const KeyHideSameAuthorReposts = "hideSameAuthorReposts";
 export const KeyHideOldReposts = "hideOldReposts";
+export const KeyHideReactionTweets = "hideReactionTweets";
 export const KeyTypefullyEnhancementsButtons = "typefullyEnhancementsButtons";
 export const KeyInterFont = "interFont";
 export const KeyTitleNotifications = "titleNotifications";
@@ -68,6 +69,7 @@ export const allSettingsKeys = [
   KeyHideViewCount,
   KeyHideSameAuthorReposts,
   KeyHideOldReposts,
+  KeyHideReactionTweets,
   KeyRecentMedia,
   KeyTrendsHomeTimeline,
   KeyRemovePromotedPosts,
@@ -141,6 +143,7 @@ export const defaultPreferences = {
   [KeyHideViewCount]: "off",
   [KeyHideSameAuthorReposts]: "off",
   [KeyHideOldReposts]: "off",
+  [KeyHideReactionTweets]: "off",
   [KeyRecentMedia]: "off",
   [KeyTrendsHomeTimeline]: "off",
   [KeyRemovePromotedPosts]: "on",

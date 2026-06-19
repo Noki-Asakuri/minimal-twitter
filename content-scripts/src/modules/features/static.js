@@ -18,6 +18,7 @@ import {
   KeyGrokButton,
   KeyHideGrokDrawer,
   KeyHideOldReposts,
+  KeyHideReactionTweets,
   KeyHideSameAuthorReposts,
   KeyHideViewCount,
   KeyHomeButton,
@@ -130,6 +131,7 @@ export const staticFeatures = {
     changeRepostFilters({
       hideSameAuthorReposts: data[KeyHideSameAuthorReposts],
       hideOldReposts: data[KeyHideOldReposts],
+      hideReactionTweets: data[KeyHideReactionTweets],
     });
     changeRecentMedia(data[KeyRecentMedia]);
     changeTrendsHomeTimeline(data[KeyTrendsHomeTimeline], data[KeyWriterMode]);

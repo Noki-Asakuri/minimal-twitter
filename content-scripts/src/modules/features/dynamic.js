@@ -13,6 +13,7 @@ import {
   KeyFollowingTimeline,
   KeyHideGrokDrawer,
   KeyHideOldReposts,
+  KeyHideReactionTweets,
   KeyHideSameAuthorReposts,
   KeyHideViewCount,
   KeyListsButton,
@@ -38,12 +39,13 @@ import throttle from "../utilities/throttle";
 
 export const dynamicFeatures = {
   general: async () => {
-    const data = await getStorage([KeyHideViewCount, KeyHideGrokDrawer, KeyHideSameAuthorReposts, KeyHideOldReposts]);
+    const data = await getStorage([KeyHideViewCount, KeyHideGrokDrawer, KeyHideSameAuthorReposts, KeyHideOldReposts, KeyHideReactionTweets]);
 
     changeHideViewCounts(data[KeyHideViewCount]);
     filterReposts({
       hideSameAuthorReposts: data[KeyHideSameAuthorReposts],
       hideOldReposts: data[KeyHideOldReposts],
+      hideReactionTweets: data[KeyHideReactionTweets],
     });
     changeRecentMedia();
     hideRightSidebar();
