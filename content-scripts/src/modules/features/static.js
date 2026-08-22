@@ -14,7 +14,6 @@ import {
   KeyCustomCss,
   KeyExploreButton,
   KeyFollowCount,
-  KeyFollowingTimeline,
   KeyGrokButton,
   KeyHideGrokDrawer,
   KeyHideOldReposts,
@@ -32,7 +31,6 @@ import {
   KeyNavigationCenter,
   KeyNotificationsButton,
   KeyProfileButton,
-  KeyRecentMedia,
   KeyRemovePromotedPosts,
   KeyRemoveTimelineBorders,
   KeyRemoveTimelineTabs,
@@ -97,9 +95,7 @@ import {
   hideGrokDrawer,
 } from "../options/navigation";
 import {
-  changeFollowingTimeline,
   changePromotedPosts,
-  changeRecentMedia,
   changeStickyHeader,
   changeTimelineBorders,
   changeTimelineTabs,
@@ -126,14 +122,12 @@ export const staticFeatures = {
     changeTweetBorders(data[KeyRemoveTweetBorders]);
     changeStickyHeader(data[KeyStickyHeader]);
     changeWriterMode(data[KeyWriterMode]);
-    changeFollowingTimeline(data[KeyFollowingTimeline]);
     changeHideViewCounts(data[KeyHideViewCount]);
     changeRepostFilters({
       hideSameAuthorReposts: data[KeyHideSameAuthorReposts],
       hideOldReposts: data[KeyHideOldReposts],
       hideReactionTweets: data[KeyHideReactionTweets],
     });
-    changeRecentMedia(data[KeyRecentMedia]);
     changeTrendsHomeTimeline(data[KeyTrendsHomeTimeline], data[KeyWriterMode]);
     changePromotedPosts(data[KeyRemovePromotedPosts]);
     changeTopicsToFollow(data[KeyRemoveTopicsToFollow]);

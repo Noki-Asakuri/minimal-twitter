@@ -10,7 +10,6 @@
 
 import {
   KeyCommunitiesButton,
-  KeyFollowingTimeline,
   KeyHideGrokDrawer,
   KeyHideOldReposts,
   KeyHideReactionTweets,
@@ -27,7 +26,7 @@ import {
 } from "../../../../storage-keys";
 import changeHideViewCounts from "../options/hideViewCount";
 import { addAnalyticsButton, addCommunitiesButton, addListsButton, addTopicsButton, addXPremiumButton, hideGrokDrawer, changeNavigationButtonsLabels } from "../options/navigation";
-import { changeFollowingTimeline, changeRecentMedia, changeTimelineTabs, changeTrendsHomeTimeline, enableGrokDrawerOnGrokButtonClick } from "../options/timeline";
+import { changeTimelineTabs, changeTrendsHomeTimeline, enableGrokDrawerOnGrokButtonClick } from "../options/timeline";
 import { changeWriterMode } from "../options/writerMode";
 import { filterReposts } from "../options/reposts";
 import { addTypefullyComposerPlug, addTypefullyReplyPlug, saveCurrentReplyToLink, addTypefullySecurityAndAccountAccessPlug, addTypefullySchedulePlug } from "../typefullyPlugs";
@@ -47,7 +46,6 @@ export const dynamicFeatures = {
       hideOldReposts: data[KeyHideOldReposts],
       hideReactionTweets: data[KeyHideReactionTweets],
     });
-    changeRecentMedia();
     hideRightSidebar();
     addSmallerSearchBarStyle();
     updateLeftSidebarPositioning();
@@ -80,13 +78,12 @@ export const dynamicFeatures = {
     } else {
       changeTimelineTabs(data[KeyRemoveTimelineTabs], data[KeyWriterMode]);
       changeTrendsHomeTimeline(data[KeyTrendsHomeTimeline], data[KeyWriterMode]);
-      changeFollowingTimeline(data[KeyFollowingTimeline]);
     }
   },
 };
 
 export const runDynamicFeatures = throttle(async () => {
-  const data = await getStorage([KeyWriterMode, KeyFollowingTimeline, KeyTrendsHomeTimeline, KeyRemoveTimelineTabs, KeyHideGrokDrawer, KeyNavigationButtonsLabels]);
+  const data = await getStorage([KeyWriterMode, KeyTrendsHomeTimeline, KeyRemoveTimelineTabs, KeyHideGrokDrawer, KeyNavigationButtonsLabels]);
 
   if (data) {
     dynamicFeatures.general();
