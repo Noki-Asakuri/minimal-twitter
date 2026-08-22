@@ -38,6 +38,7 @@ import {
   changeTimelineTabs,
   changeTrendsHomeTimeline,
   enableGrokDrawerOnGrokButtonClick,
+  splitProfileMediaTab,
 } from "../options/timeline";
 import { changeWriterMode } from "../options/writerMode";
 import { filterReposts } from "../options/reposts";
@@ -73,6 +74,7 @@ export const dynamicFeatures = {
     hideRightSidebar();
     addSmallerSearchBarStyle();
     updateLeftSidebarPositioning();
+    splitProfileMediaTab();
     enableGrokDrawerOnGrokButtonClick(data[KeyHideGrokDrawer]);
   },
   typefullyPlugs: () => {

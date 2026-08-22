@@ -3,6 +3,80 @@ import selectors from "../../selectors";
 import addStyles, { removeStyles, stylesExist } from "../utilities/addStyles";
 import { getStorage } from "../utilities/storage";
 
+const profileMediaTabAttribute = "data-minimal-twitter-profile-media-tab";
+
+const setProfileMediaTabLabel = (tab, label) => {
+  const labelElement = Array.from(tab.querySelectorAll("span")).find(
+    (element) => element.childElementCount === 0 && element.textContent.trim(),
+  );
+
+  if (labelElement && labelElement.textContent !== label) labelElement.textContent = label;
+};
+
+const setAttribute = (element, name, value) => {
+  if (element.getAttribute(name) !== value) element.setAttribute(name, value);
+};
+
+const removeProfileTabIndicator = (tab) => {
+  const tabContent = tab.firstElementChild;
+  const indicator = tabContent?.lastElementChild;
+
+  if (indicator && !indicator.textContent.trim()) indicator.remove();
+};
+
+export const splitProfileMediaTab = () => {
+  const mediaTab = Array.from(
+    document.querySelectorAll(`${selectors.mainColumn} [role="tab"][href]`),
+  ).find((tab) => {
+    const url = new URL(tab.getAttribute("href"), window.location.origin);
+    return /^\/[A-Za-z0-9_]+\/media\/?$/.test(url.pathname) && !url.search;
+  });
+
+  if (!mediaTab) return;
+
+  const tablist = mediaTab.closest("[role='tablist']");
+  const mediaTabWrapper = mediaTab.parentElement;
+
+  if (!tablist || !mediaTabWrapper) return;
+
+  let imagesTabWrapper = tablist.querySelector(`[${profileMediaTabAttribute}="images"]`);
+
+  if (!imagesTabWrapper) {
+    imagesTabWrapper = mediaTabWrapper.cloneNode(true);
+    imagesTabWrapper.setAttribute(profileMediaTabAttribute, "images");
+  }
+
+  if (mediaTabWrapper.nextElementSibling !== imagesTabWrapper)
+    mediaTabWrapper.after(imagesTabWrapper);
+
+  const imagesTab = imagesTabWrapper.matches("[role='tab']")
+    ? imagesTabWrapper
+    : imagesTabWrapper.querySelector("[role='tab']");
+
+  if (!imagesTab) return;
+
+  const mediaUrl = new URL(mediaTab.getAttribute("href"), window.location.origin);
+  mediaUrl.searchParams.set("filter", "photo");
+  setAttribute(imagesTab, "href", `${mediaUrl.pathname}${mediaUrl.search}`);
+
+  setProfileMediaTabLabel(mediaTab, "Videos");
+  setProfileMediaTabLabel(imagesTab, "Images");
+
+  const imagesSelected =
+    window.location.pathname === mediaUrl.pathname &&
+    new URLSearchParams(window.location.search).get("filter") === "photo";
+
+  setAttribute(
+    mediaTab,
+    "aria-selected",
+    String(window.location.pathname === mediaUrl.pathname && !imagesSelected),
+  );
+  setAttribute(imagesTab, "aria-selected", String(imagesSelected));
+
+  if (imagesSelected) removeProfileTabIndicator(mediaTab);
+  else removeProfileTabIndicator(imagesTab);
+};
+
 export const changeTimelineWidth = (timelineWidth) => {
   switch (timelineWidth) {
     case 600:
