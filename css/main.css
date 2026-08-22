@@ -148,11 +148,21 @@ a[href*="quick_promote_web"] {
   padding: 6px 8px;
   max-width: 250px;
   border-radius: 5px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 2px 14px rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.08),
+    0 2px 14px rgba(0, 0, 0, 0.08);
   z-index: 9999;
-  font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
-  transition: opacity 0.15s cubic-bezier(0.3, 0, 0.1, 1),
+  font-family:
+    TwitterChirp,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  transition:
+    opacity 0.15s cubic-bezier(0.3, 0, 0.1, 1),
     transform 0.15s cubic-bezier(0.3, 0, 0.1, 1);
 }
 

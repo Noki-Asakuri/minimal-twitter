@@ -14,7 +14,7 @@ export default function constructNewData(changes) {
       const itemKey = Object.keys(item)[0];
       const itemValue = Object.values(item)[0];
       return [itemKey, itemValue];
-    })
+    }),
   );
 
   return newChangesData;

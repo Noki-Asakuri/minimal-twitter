@@ -15,7 +15,7 @@ export const changeTimelineWidth = (timelineWidth) => {
             max-width: 600px;
           }
         }
-        `
+        `,
       );
       break;
 
@@ -29,7 +29,7 @@ export const changeTimelineWidth = (timelineWidth) => {
             max-width: 650px;
           }
         }
-        `
+        `,
       );
       break;
 
@@ -43,7 +43,7 @@ export const changeTimelineWidth = (timelineWidth) => {
             max-width: 700px;
           }
         }
-        `
+        `,
       );
       break;
 
@@ -57,7 +57,7 @@ export const changeTimelineWidth = (timelineWidth) => {
             max-width: 750px;
           }
         }
-        `
+        `,
       );
       break;
 
@@ -71,7 +71,7 @@ export const changeTimelineWidth = (timelineWidth) => {
             max-width: 800px;
           }
         }
-        `
+        `,
       );
       break;
   }
@@ -92,7 +92,7 @@ export const changeTimelineBorders = (timelineBorders) => {
             border-style: hidden;
           }
         }
-        `.trim()
+        `.trim(),
       );
       break;
   }
@@ -114,7 +114,7 @@ export const changeTweetBorders = (tweetBorders) => {
         ${selectors.mainColumn} > div > div:empty {
           background: transparent;
         }
-        `.trim()
+        `.trim(),
       );
       break;
   }
@@ -133,7 +133,7 @@ export const changeStickyHeader = (stickyHeader) => {
         ${selectors.mainColumn} > div > div {
           position: unset;
         }
-        `
+        `,
       );
       break;
   }
@@ -148,7 +148,7 @@ export const changePromotedPosts = (removePromotedPosts) => {
         [data-testid="placementTracking"] article {
           display: flex;
         }
-        `
+        `,
       );
       break;
 
@@ -176,14 +176,19 @@ export const changeTopicsToFollow = (removeTopicsToFollow) => {
         [aria-label="Lists timeline"] section[aria-labelledby^="accessible-list-"] > div[aria-label$="Carousel"] {
           display: flex;
         }
-        `
+        `,
       );
       break;
   }
 };
 
 export const changeTimelineTabs = (removeTimelineTabs, writerMode) => {
-  if (writerMode === "on" || window.location.pathname.includes("compose/tweet") || !window.location.pathname.includes("/home") || !window.location.pathname === "/") {
+  if (
+    writerMode === "on" ||
+    window.location.pathname.includes("compose/tweet") ||
+    !window.location.pathname.includes("/home") ||
+    !window.location.pathname === "/"
+  ) {
     removeStyles("removeTimelineTabs");
     return;
   }
@@ -202,14 +207,19 @@ export const changeTimelineTabs = (removeTimelineTabs, writerMode) => {
         ${selectors.timelineTabs} {
           display: none;
         }
-        `
+        `,
       );
       break;
   }
 };
 
 export const changeTrendsHomeTimeline = (trendsHomeTimeline, writerMode) => {
-  if (writerMode === "on" || window.location.pathname.includes("compose/tweet") || !window.location.pathname.includes("/home") || !window.location.pathname === "/") {
+  if (
+    writerMode === "on" ||
+    window.location.pathname.includes("compose/tweet") ||
+    !window.location.pathname.includes("/home") ||
+    !window.location.pathname === "/"
+  ) {
     removeStyles("trendsHomeTimeline");
     return;
   }
@@ -260,7 +270,7 @@ export const changeTrendsHomeTimeline = (trendsHomeTimeline, writerMode) => {
               transform: translateX(-64px);
             }
           }
-          `
+          `,
       );
       break;
   }
@@ -273,7 +283,9 @@ export const changeLatestTweets = (latestTweets) => {
 
   const showLatestTweets = () => {
     // Check if the "Latest Tweets" options is already selected to avoid unnecessary clicks
-    const latestSelected = !!document.querySelector(`${selectors.timelineTablist} > div:last-child > a[aria-selected='true']`);
+    const latestSelected = !!document.querySelector(
+      `${selectors.timelineTablist} > div:last-child > a[aria-selected='true']`,
+    );
     // Check if there's a menu button
     const menuitem = document.querySelector(selectors.menuItem);
 
@@ -299,7 +311,9 @@ export const changeLatestTweets = (latestTweets) => {
 
             if (isTimelineOptions) {
               // Click the "Latest Tweets" nav bar option
-              const latestTweetsNavBarOption = document.querySelector(`${selectors.timelineTablist} > div:last-child > a`);
+              const latestTweetsNavBarOption = document.querySelector(
+                `${selectors.timelineTablist} > div:last-child > a`,
+              );
               latestTweetsNavBarOption && latestTweetsNavBarOption.click();
             }
           }, 100);
@@ -378,7 +392,7 @@ export const enableGrokDrawerOnGrokButtonClick = (hideGrokDrawer) => {
           "grokDrawer",
           `${selectors.grokDrawer} {
           display: none !important;
-        }`
+        }`,
         );
       }
       observer.disconnect();

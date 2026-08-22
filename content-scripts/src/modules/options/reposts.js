@@ -1,5 +1,9 @@
 import selectors from "../../selectors";
-import { KeyHideOldReposts, KeyHideReactionTweets, KeyHideSameAuthorReposts } from "../../../../storage-keys";
+import {
+  KeyHideOldReposts,
+  KeyHideReactionTweets,
+  KeyHideSameAuthorReposts,
+} from "../../../../storage-keys";
 import { getStorage } from "../utilities/storage";
 
 const HIDDEN_REPOST_CLASS = "mt-hidden-repost";
@@ -9,10 +13,15 @@ const REACTION_TWEET_CLASS = "mt-hidden-reaction-tweet";
 const ONE_YEAR_IN_MS = 365 * 24 * 60 * 60 * 1000;
 
 export async function changeRepostFilters(settings = {}) {
-  const savedSettings = await getStorage([KeyHideSameAuthorReposts, KeyHideOldReposts, KeyHideReactionTweets]);
+  const savedSettings = await getStorage([
+    KeyHideSameAuthorReposts,
+    KeyHideOldReposts,
+    KeyHideReactionTweets,
+  ]);
 
   filterReposts({
-    hideSameAuthorReposts: settings.hideSameAuthorReposts ?? savedSettings[KeyHideSameAuthorReposts],
+    hideSameAuthorReposts:
+      settings.hideSameAuthorReposts ?? savedSettings[KeyHideSameAuthorReposts],
     hideOldReposts: settings.hideOldReposts ?? savedSettings[KeyHideOldReposts],
     hideReactionTweets: settings.hideReactionTweets ?? savedSettings[KeyHideReactionTweets],
   });
@@ -28,7 +37,8 @@ export function filterReposts(settings = {}) {
     const shouldHideOldRepost = hideOldReposts && isOldRepost(tweet);
     const shouldHideReactionTweet = hideReactionTweets && isReactionTweet(tweet);
     const wasHiddenByRepostFilter = tweet.classList.contains(HIDDEN_REPOST_CLASS);
-    const shouldHideTweet = shouldHideSameAuthorRepost || shouldHideOldRepost || shouldHideReactionTweet;
+    const shouldHideTweet =
+      shouldHideSameAuthorRepost || shouldHideOldRepost || shouldHideReactionTweet;
 
     tweet.classList.toggle(SAME_AUTHOR_REPOST_CLASS, shouldHideSameAuthorRepost);
     tweet.classList.toggle(OLD_REPOST_CLASS, shouldHideOldRepost);
@@ -71,24 +81,46 @@ function isRepost(tweet) {
 }
 
 function isReactionTweet(tweet) {
-  return Array.from(tweet.querySelectorAll('[data-testid="videoReactionAttribution"], [aria-label]')).some((element) => includesReactionText(element.textContent) || includesReactionText(element.getAttribute("aria-label")));
+  return Array.from(
+    tweet.querySelectorAll('[data-testid="videoReactionAttribution"], [aria-label]'),
+  ).some(
+    (element) =>
+      includesReactionText(element.textContent) ||
+      includesReactionText(element.getAttribute("aria-label")),
+  );
 }
 
 function getRepostContextLinks(tweet) {
-  const linksFromContextElements = getRepostContextElements(tweet).flatMap((element) => Array.from(element.querySelectorAll('a[href^="/"][role="link"]')));
-  const linksFromContextAncestors = Array.from(tweet.querySelectorAll('a[href^="/"][role="link"]')).filter((link) => hasRepostContextAncestor(tweet, link));
-  const linksWithRepostText = Array.from(tweet.querySelectorAll('a[href^="/"][role="link"]')).filter((link) => includesRepostText(link.textContent) || includesRepostText(link.getAttribute("aria-label")));
+  const linksFromContextElements = getRepostContextElements(tweet).flatMap((element) =>
+    Array.from(element.querySelectorAll('a[href^="/"][role="link"]')),
+  );
+  const linksFromContextAncestors = Array.from(
+    tweet.querySelectorAll('a[href^="/"][role="link"]'),
+  ).filter((link) => hasRepostContextAncestor(tweet, link));
+  const linksWithRepostText = Array.from(
+    tweet.querySelectorAll('a[href^="/"][role="link"]'),
+  ).filter(
+    (link) =>
+      includesRepostText(link.textContent) || includesRepostText(link.getAttribute("aria-label")),
+  );
 
-  return Array.from(new Set([...linksFromContextElements, ...linksFromContextAncestors, ...linksWithRepostText]));
+  return Array.from(
+    new Set([...linksFromContextElements, ...linksFromContextAncestors, ...linksWithRepostText]),
+  );
 }
 
 function getRepostContextElements(tweet) {
   const time = tweet.querySelector("time");
 
-  return Array.from(tweet.querySelectorAll('[data-testid="socialContext"], [aria-label]')).filter((element) => {
-    if (time && element.contains(time)) return false;
-    return includesRepostText(element.textContent) || includesRepostText(element.getAttribute("aria-label"));
-  });
+  return Array.from(tweet.querySelectorAll('[data-testid="socialContext"], [aria-label]')).filter(
+    (element) => {
+      if (time && element.contains(time)) return false;
+      return (
+        includesRepostText(element.textContent) ||
+        includesRepostText(element.getAttribute("aria-label"))
+      );
+    },
+  );
 }
 
 function hasRepostContextAncestor(tweet, link) {
@@ -97,7 +129,11 @@ function hasRepostContextAncestor(tweet, link) {
 
   while (ancestor && ancestor !== tweet) {
     if (!time || !ancestor.contains(time)) {
-      if (includesRepostText(ancestor.textContent) || includesRepostText(ancestor.getAttribute("aria-label"))) return true;
+      if (
+        includesRepostText(ancestor.textContent) ||
+        includesRepostText(ancestor.getAttribute("aria-label"))
+      )
+        return true;
     }
 
     ancestor = ancestor.parentElement;
@@ -132,7 +168,11 @@ function getTweetPublishedAt(tweet) {
 function getUsernameFromHref(href) {
   if (!href) return null;
 
-  const [username] = href.replace(/^https?:\/\/(?:twitter|x)\.com/i, "").split("?")[0].split("/").filter(Boolean);
+  const [username] = href
+    .replace(/^https?:\/\/(?:twitter|x)\.com/i, "")
+    .split("?")[0]
+    .split("/")
+    .filter(Boolean);
   if (!username || username === "i" || username === "search" || username === "home") return null;
 
   return username.toLowerCase();

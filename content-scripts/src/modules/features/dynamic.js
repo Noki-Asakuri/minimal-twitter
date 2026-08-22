@@ -22,14 +22,32 @@ import {
   KeyTypefullyGrowTab,
   KeyWriterMode,
   KeyXPremiumButton,
-  KeyNavigationButtonsLabels
+  KeyNavigationButtonsLabels,
 } from "../../../../storage-keys";
 import changeHideViewCounts from "../options/hideViewCount";
-import { addAnalyticsButton, addCommunitiesButton, addListsButton, addTopicsButton, addXPremiumButton, hideGrokDrawer, changeNavigationButtonsLabels } from "../options/navigation";
-import { changeTimelineTabs, changeTrendsHomeTimeline, enableGrokDrawerOnGrokButtonClick } from "../options/timeline";
+import {
+  addAnalyticsButton,
+  addCommunitiesButton,
+  addListsButton,
+  addTopicsButton,
+  addXPremiumButton,
+  hideGrokDrawer,
+  changeNavigationButtonsLabels,
+} from "../options/navigation";
+import {
+  changeTimelineTabs,
+  changeTrendsHomeTimeline,
+  enableGrokDrawerOnGrokButtonClick,
+} from "../options/timeline";
 import { changeWriterMode } from "../options/writerMode";
 import { filterReposts } from "../options/reposts";
-import { addTypefullyComposerPlug, addTypefullyReplyPlug, saveCurrentReplyToLink, addTypefullySecurityAndAccountAccessPlug, addTypefullySchedulePlug } from "../typefullyPlugs";
+import {
+  addTypefullyComposerPlug,
+  addTypefullyReplyPlug,
+  saveCurrentReplyToLink,
+  addTypefullySecurityAndAccountAccessPlug,
+  addTypefullySchedulePlug,
+} from "../typefullyPlugs";
 import hideRightSidebar from "../utilities/hideRightSidebar";
 import { updateLeftSidebarPositioning } from "../utilities/leftSidebarPosition";
 import { addSmallerSearchBarStyle } from "../utilities/other-styles";
@@ -38,7 +56,13 @@ import throttle from "../utilities/throttle";
 
 export const dynamicFeatures = {
   general: async () => {
-    const data = await getStorage([KeyHideViewCount, KeyHideGrokDrawer, KeyHideSameAuthorReposts, KeyHideOldReposts, KeyHideReactionTweets]);
+    const data = await getStorage([
+      KeyHideViewCount,
+      KeyHideGrokDrawer,
+      KeyHideSameAuthorReposts,
+      KeyHideOldReposts,
+      KeyHideReactionTweets,
+    ]);
 
     changeHideViewCounts(data[KeyHideViewCount]);
     filterReposts({
@@ -62,7 +86,13 @@ export const dynamicFeatures = {
     changeNavigationButtonsLabels(data[KeyNavigationButtonsLabels]);
   },
   sidebarButtons: async () => {
-    const data = await getStorage([KeyListsButton, KeyCommunitiesButton, KeyTopicsButton, KeyXPremiumButton, KeyTypefullyGrowTab]);
+    const data = await getStorage([
+      KeyListsButton,
+      KeyCommunitiesButton,
+      KeyTopicsButton,
+      KeyXPremiumButton,
+      KeyTypefullyGrowTab,
+    ]);
 
     if (!data) return;
 
@@ -83,7 +113,13 @@ export const dynamicFeatures = {
 };
 
 export const runDynamicFeatures = throttle(async () => {
-  const data = await getStorage([KeyWriterMode, KeyTrendsHomeTimeline, KeyRemoveTimelineTabs, KeyHideGrokDrawer, KeyNavigationButtonsLabels]);
+  const data = await getStorage([
+    KeyWriterMode,
+    KeyTrendsHomeTimeline,
+    KeyRemoveTimelineTabs,
+    KeyHideGrokDrawer,
+    KeyNavigationButtonsLabels,
+  ]);
 
   if (data) {
     dynamicFeatures.general();

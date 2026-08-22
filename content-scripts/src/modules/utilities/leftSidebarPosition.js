@@ -2,7 +2,9 @@ import selectors from "../../selectors";
 import addStyles, { removeStyles, stylesExist } from "./addStyles";
 
 export function updateLeftSidebarPositioning() {
-  const usesCustomPageLayout = window.location.pathname.startsWith("/messages") || window.location.pathname.startsWith("/search");
+  const usesCustomPageLayout =
+    window.location.pathname.startsWith("/messages") ||
+    window.location.pathname.startsWith("/search");
 
   if (usesCustomPageLayout) {
     removeStyles("navigation-position");
@@ -24,6 +26,6 @@ export function updateLeftSidebarPositioning() {
         body {
           padding-left: 88px;
         }
-      }`
+      }`,
   );
 }

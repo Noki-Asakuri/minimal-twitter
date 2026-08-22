@@ -16,7 +16,7 @@ Requires [Bun](https://bun.sh/docs/installation).
 
 - `bun install` - Installs dependencies for the root project, popup, and content scripts
 - `bun run build` or `bun run bundle` - Builds and bundles the extension for all browsers (prompts for browser choice)
-- Builds both popup (Next.js) and content-scripts (Rollup) automatically
+- Builds both popup (Vite + React + TypeScript) and content-scripts (Rolldown) automatically
 - Creates bundled packages in `/bundle/` directory for Chrome, Firefox, and Safari
 
 ### Content Scripts (content-scripts/)
@@ -26,11 +26,11 @@ Requires [Bun](https://bun.sh/docs/installation).
 
 ### Popup UI (popup/)
 
-- `bun run popup:dev` - Development server for popup UI (Next.js)
+- `bun run popup:dev` - Development server for popup UI (Vite)
 - `bun run popup:build` - Build popup for production
-- `bun run popup:lint` - Run ESLint
-- `cd popup && bun run check:prettier` - Check code formatting
-- `cd popup && bun run write:prettier` - Format code with Prettier
+- `cd popup && bun run typecheck` - Type-check popup TypeScript
+- `bun run format:check` - Check formatting across the repository
+- `bun run format` - Format the repository with Prettier
 
 ### Development Workflow
 
@@ -60,7 +60,7 @@ After making changes, refresh the extension in `chrome://extensions` to reload.
 **Three main parts:**
 
 1. **content-scripts/**: Content scripts that run on x.com and apply customizations
-2. **popup/**: Next.js app for the extension settings popup UI
+2. **popup/**: Vite + React app for the extension settings popup UI
 3. **Root files**: Build scripts, manifests, shared utilities
 
 ### Settings and Storage
@@ -101,10 +101,11 @@ After making changes, refresh the extension in `chrome://extensions` to reload.
 
 ### Popup UI Structure
 
-**Next.js app** (popup/):
+**Vite + React + TypeScript app** (popup/):
 
 - `components/sections/`: Settings sections (TimelineSection, NavigationSection, etc.)
 - `components/ui/`: Reusable UI components (switches, checkboxes, sliders)
+- Uses Tailwind CSS v4 through the Vite plugin with theme tokens in `src/styles/globals.css`
 - Uses Radix UI primitives and Stitches for styling
 - Settings are saved to chrome.storage and synced to content scripts
 
@@ -161,6 +162,7 @@ To add a new feature toggle:
 2. Run `bun run build` to create bundles for all browsers
 
 3. Commit and tag:
+
    ```bash
    git add . && git commit -m "Bump version to X.Y.Z"
    git tag vX.Y.Z

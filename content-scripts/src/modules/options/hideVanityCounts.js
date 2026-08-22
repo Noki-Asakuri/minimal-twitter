@@ -7,7 +7,7 @@ export const changeReplyCount = (replyCount) => {
         "replyCount",
         `[data-testid="reply"] span { 
           visibility: hidden;
-        }`
+        }`,
       );
       break;
 
@@ -27,7 +27,7 @@ export const changeRetweetCount = (retweetCount) => {
         [data-testid="retweet"] span,
         [data-testid="unretweet"] span {
           visibility: hidden; 
-        }`
+        }`,
       );
       break;
 
@@ -46,7 +46,7 @@ export const changeLikeCount = (likeCount) => {
         [data-testid="like"] span,
         [data-testid="unlike"] span {
            visibility: hidden; 
-        }`
+        }`,
       );
       break;
 
@@ -64,7 +64,7 @@ export const changeFollowingAndFollowersCounts = (followCount) => {
         `[href$="following"][dir][role="link"],
         [href$="followers"][dir][role="link"] {
           display: none;
-        }`
+        }`,
       );
       break;
 

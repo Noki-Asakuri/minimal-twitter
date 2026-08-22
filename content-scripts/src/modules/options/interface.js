@@ -59,7 +59,7 @@ export const changeInterFont = (interFont) => {
         div, span, input, textarea {
           font-family: Inter, TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
         }
-        `
+        `,
       );
       break;
 
@@ -79,7 +79,7 @@ export const changeTweetButton = (tweetButton) => {
         ${selectors.tweetButton} {
           visibility: hidden;
         }
-        `
+        `,
       );
       break;
 
@@ -99,7 +99,7 @@ export const changeChatDrawerButton = (chatDrawerButton) => {
           display: none !important;
           visibility: hidden !important;
         }
-        `
+        `,
       );
       break;
 
@@ -117,7 +117,7 @@ export const changeHideSearchBar = (searchBar) => {
         `${selectors.searchBox} {
           display: none;
           visibility: hidden;
-        }`
+        }`,
       );
       addStyles(
         "trendsHomeTimeline-more",
@@ -125,7 +125,7 @@ export const changeHideSearchBar = (searchBar) => {
           ${selectors.rightSidebar} section[aria-labelledby^="accessible-list-"] {
             top: 12px !important;
           }
-        }`
+        }`,
       );
       break;
 
@@ -137,7 +137,7 @@ export const changeHideSearchBar = (searchBar) => {
           ${selectors.rightSidebar} section[aria-labelledby^="accessible-list-"] {
             top: unset;
           }
-        }`
+        }`,
       );
       break;
   }
@@ -154,7 +154,7 @@ export const changeTransparentSearchBar = (transparentSearch) => {
           /* Keep the border's dimensions so toggling this setting never shifts the search layout. */
           border-color: transparent;
         }
-        `
+        `,
       );
       break;
 

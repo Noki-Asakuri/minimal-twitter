@@ -6,7 +6,9 @@ export const addSidebarButton = ({ name, href, userHref, onClick, svgAsset }) =>
   ];
 
   // We base new sidebar buttons on the existing "Profile" one, so let's get it:
-  const profileNode = document.querySelector('nav[role="navigation"] > a[role="link"][data-testid="AppTabBar_Profile_Link"]');
+  const profileNode = document.querySelector(
+    'nav[role="navigation"] > a[role="link"][data-testid="AppTabBar_Profile_Link"]',
+  );
   if (!profileNode) {
     return;
   }
@@ -23,7 +25,8 @@ export const addSidebarButton = ({ name, href, userHref, onClick, svgAsset }) =>
 
   if (existingElement) {
     const hasChanged =
-      (profileNode.querySelector("span") && !existingElement.querySelector("span")) || (!profileNode.querySelector("span") && existingElement.querySelector("span"));
+      (profileNode.querySelector("span") && !existingElement.querySelector("span")) ||
+      (!profileNode.querySelector("span") && existingElement.querySelector("span"));
 
     if (!hasChanged) {
       return;

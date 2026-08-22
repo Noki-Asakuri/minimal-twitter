@@ -13,7 +13,7 @@ export const changeSidebarSetting = (sidebarSelector, state, onAdd) => {
         sidebarSelector,
         `${selectors.sidebarLinks[sidebarSelector]} {
           display: none;
-        }`
+        }`,
       );
       break;
 
@@ -37,13 +37,16 @@ export const changeJobsButton = (state) => changeSidebarSetting("jobs", state);
 export const changeArticlesButton = (state) => changeSidebarSetting("articles", state);
 export const changeVerifiedOrgsButton = (state) => changeSidebarSetting("verifiedOrgs", state);
 export const changeProfileButton = (state) => changeSidebarSetting("profile", state);
-export const changeXPremiumButton = (state) => changeSidebarSetting("xPremium", state, addXPremiumButton);
+export const changeXPremiumButton = (state) =>
+  changeSidebarSetting("xPremium", state, addXPremiumButton);
 export const changeGrokButton = (state) => changeSidebarSetting("grok", state);
 export const changeMoreButton = (state) => changeSidebarSetting("more", state);
 export const changeTopicsButton = (state) => changeSidebarSetting("topics", state, addTopicsButton);
-export const changeCommunitiesButton = (state) => changeSidebarSetting("communities", state, addCommunitiesButton);
+export const changeCommunitiesButton = (state) =>
+  changeSidebarSetting("communities", state, addCommunitiesButton);
 export const changeListsButton = (state) => changeSidebarSetting("lists", state, addListsButton);
-export const changeAnalyticsButton = (state) => changeSidebarSetting("analytics", state, addAnalyticsButton);
+export const changeAnalyticsButton = (state) =>
+  changeSidebarSetting("analytics", state, addAnalyticsButton);
 
 let tm1;
 export const addXPremiumButton = () => {
@@ -65,14 +68,17 @@ export const addAnalyticsButton = () => {
       name: "Analytics",
       svgAsset: svgAssets.grow.normal,
       onClick: () => {
-        const screenName = document.querySelector(`a[role="link"][data-testid="AppTabBar_Profile_Link"]`)?.getAttribute("href").replace("/", "");
+        const screenName = document
+          .querySelector(`a[role="link"][data-testid="AppTabBar_Profile_Link"]`)
+          ?.getAttribute("href")
+          .replace("/", "");
 
         const url = createTypefullyUrl(
           {
             utm_content: "sidebar-grow-button",
             "mt-screen-name": screenName,
           },
-          "grow"
+          "grow",
         );
 
         if (screenName) window.open(url, "_blank");
@@ -118,7 +124,7 @@ export const changeUnreadCountBadge = (unreadCountBadge) => {
         }
         ${selectors.accountSwitcherButton} > div > svg+div[aria-label] {
           display: none;
-        }`
+        }`,
       );
       break;
   }
@@ -134,7 +140,7 @@ const addStyleToRemoveLabels = () => {
     ${selectors.accountSwitcherLabel} {
       display: none;
     }
-    `
+    `,
   );
 };
 
@@ -148,7 +154,7 @@ const addStyleToShowLabelsOnHover = () => {
       opacity: 0;
       transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
-    `
+    `,
   );
   addStyles(
     "showLabelsOnHover",
@@ -157,7 +163,7 @@ const addStyleToShowLabelsOnHover = () => {
     ${selectors.accountSwitcherLabel_hover} {
       opacity: 1;
     }
-    `
+    `,
   );
 };
 
@@ -182,7 +188,7 @@ flex: 0.5 1 auto;
 ${selectors.mainWrapper} {
 align-items: flex-start;
 }
-`
+`,
       );
     }
   } else {
@@ -219,7 +225,7 @@ export const changeNavigationCenter = (navigationCenter) => {
           justify-content: center;
           padding-top: 0;
         }
-        `
+        `,
       );
       break;
 
@@ -238,7 +244,7 @@ export const hideGrokDrawer = (state) => {
         "grokDrawer",
         `${selectors.grokDrawer}:not(.typefully-grok-drawer-enabled) {
           display: none !important;
-        }`
+        }`,
       );
       break;
     case "off":

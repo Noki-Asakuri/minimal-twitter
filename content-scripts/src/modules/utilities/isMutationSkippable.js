@@ -15,7 +15,10 @@ export default function isMutationSkippable(mutationsList) {
       return true;
 
     // Engagement counts
-    if (t.closest(`[data-testid="like"]`) || t.closest(`[data-testid="retweet"]` || t.closest(`[data-testid="reply"]`))) {
+    if (
+      t.closest(`[data-testid="like"]`) ||
+      t.closest(`[data-testid="retweet"]` || t.closest(`[data-testid="reply"]`))
+    ) {
       return true;
     }
 
@@ -29,7 +32,11 @@ export default function isMutationSkippable(mutationsList) {
     if (t.closest("head")) return true;
 
     // User Avatar changes
-    if (el?.closest("[data-testid^='UserAvatar-Container']") || t?.closest("[data-testid^='UserAvatar-Container']")) return true;
+    if (
+      el?.closest("[data-testid^='UserAvatar-Container']") ||
+      t?.closest("[data-testid^='UserAvatar-Container']")
+    )
+      return true;
 
     // Post media
     if (el?.closest("[data-testid='tweetPhoto']")) return true;
@@ -60,17 +67,22 @@ export default function isMutationSkippable(mutationsList) {
     if (el?.nodeName === "STYLE") return true;
 
     // DM drawer
-    if (el?.closest("[data-testid='DMDrawer']") || t?.closest("[data-testid='DMDrawer']")) return true;
+    if (el?.closest("[data-testid='DMDrawer']") || t?.closest("[data-testid='DMDrawer']"))
+      return true;
 
     // Trends drawer
-    if (el?.closest("[data-testid='sidebarColumn']") || t?.closest("[data-testid='sidebarColumn']")) return true;
+    if (el?.closest("[data-testid='sidebarColumn']") || t?.closest("[data-testid='sidebarColumn']"))
+      return true;
 
     // Ignore text only nodes
     if (el?.nodeName === "#text") return true;
 
     // Ignore info button on tweets
     // it's a > div > div > div[data-testid="caret"]
-    if (el?.nodeName === "DIV" && el?.firstChild?.firstChild?.firstChild?.getAttribute("data-testid") === "caret") {
+    if (
+      el?.nodeName === "DIV" &&
+      el?.firstChild?.firstChild?.firstChild?.getAttribute("data-testid") === "caret"
+    ) {
       return true;
     }
 

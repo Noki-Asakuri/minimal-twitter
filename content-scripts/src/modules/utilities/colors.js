@@ -29,7 +29,10 @@ export const extractColorsAsRootVars = () => {
   extractColor("h2 > span", "main-text");
   extractColor("div > span", "main-text");
   extractColor("a > time", "secondary-text");
-  extractColor("[data-testid='primaryColumn'] div[aria-haspopup='menu'] > div > div > svg", "secondary-text");
+  extractColor(
+    "[data-testid='primaryColumn'] div[aria-haspopup='menu'] > div > div > svg",
+    "secondary-text",
+  );
   extractColor("a", "accent");
   extractColor("div > svg", "glyphs");
 };

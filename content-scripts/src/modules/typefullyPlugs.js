@@ -20,8 +20,12 @@ export const addTypefullyComposerPlug = () => {
 
   const modal = document.querySelector('[aria-labelledby="modal-header"][role="dialog"]');
   const tweetComposeArea = modal?.querySelector("div.public-DraftStyleDefault-block");
-  const tweetButtonInlineDisabled = document.querySelector(`[data-testid="tweetButtonInline"][aria-disabled]`);
-  const tweetButtonInlineNotDisabled = document.querySelector(`[data-testid="tweetButtonInline"]:not([aria-disabled])`);
+  const tweetButtonInlineDisabled = document.querySelector(
+    `[data-testid="tweetButtonInline"][aria-disabled]`,
+  );
+  const tweetButtonInlineNotDisabled = document.querySelector(
+    `[data-testid="tweetButtonInline"]:not([aria-disabled])`,
+  );
 
   // Modal plug
   if (modal && tweetComposeArea && !document.getElementById(MODAL_PLUG_ID)) {
@@ -49,13 +53,9 @@ export const addTypefullyComposerPlug = () => {
 </ul>
 <p>Powered by <a href="${url}" target="_blank">Typefully</a>, the makers of the Minimal Twitter extension.</p>`;
 
-    addTypefullyBox(
-      modal,
-      innerHTML,
-      {
-        withArrow: true,
-      }
-    );
+    addTypefullyBox(modal, innerHTML, {
+      withArrow: true,
+    });
 
     modal.appendChild(element);
   }
@@ -83,7 +83,7 @@ export const addTypefullyComposerPlug = () => {
       `[data-testid="tweetButtonInline"] {
         margin-left: 8px;
         order: 2;
-      }`
+      }`,
     );
 
     addTooltip(element, {
@@ -127,10 +127,20 @@ export const addTypefullyReplyPlug = () => {
 
     const replyingToLink = sessionStorage.getItem(REPLY_TO_STORAGE_KEY);
 
-    if (modal && toolbar && replyButton && replyingToLink && tweetComposeArea && !document.getElementById(REPLY_PLUG_ID)) {
+    if (
+      modal &&
+      toolbar &&
+      replyButton &&
+      replyingToLink &&
+      tweetComposeArea &&
+      !document.getElementById(REPLY_PLUG_ID)
+    ) {
       sessionStorage.removeItem(REPLY_TO_STORAGE_KEY);
 
-      const typefullyReplyLinkElement = createTypefullyLinkElement(REPLY_PLUG_ID, "typefully-reply-button");
+      const typefullyReplyLinkElement = createTypefullyLinkElement(
+        REPLY_PLUG_ID,
+        "typefully-reply-button",
+      );
       typefullyReplyLinkElement.addEventListener("click", () => {
         getCurrentTextAndSendToTypefully(replyingToLink);
       });
@@ -160,24 +170,22 @@ export const addTypefullySecurityAndAccountAccessPlug = () => {
 
   if (securityAndAccountAccess && !document.getElementById("typefully-callout-box")) {
     const url = createTypefullyUrl({
-      utm_content: "typefully-teams-callout"
+      utm_content: "typefully-teams-callout",
     });
 
     const innerHTML = `<p>You can use <a href="${url}" target="_blank">Typefully</a> to easily collaborate on multiple Twitter accounts with your team or clients and to share & comment on draft posts.</p>`;
 
-    addTypefullyBox(
-      securityAndAccountAccess,
-      innerHTML,
-      {
-        className: "typefully-teams-box",
-        withArrow: false,
-      }
-    );
+    addTypefullyBox(securityAndAccountAccess, innerHTML, {
+      className: "typefully-teams-box",
+      withArrow: false,
+    });
   }
 };
 
 export const addTypefullySchedulePlug = () => {
-  const scheduleConfirmButton = document.querySelector('[data-testid="scheduledConfirmationPrimaryAction"]');
+  const scheduleConfirmButton = document.querySelector(
+    '[data-testid="scheduledConfirmationPrimaryAction"]',
+  );
 
   if (scheduleConfirmButton && !document.getElementById("typefully-schedule-button")) {
     const scheduleButton = scheduleConfirmButton.cloneNode(true);
@@ -211,7 +219,7 @@ export const addTypefullySchedulePlug = () => {
 
     scheduleConfirmButton.parentElement.insertBefore(scheduleButton, scheduleConfirmButton);
   }
-}
+};
 
 /* ----------------------------- Typefully Utils ---------------------------- */
 
@@ -242,10 +250,16 @@ export const getCurrentTextAndSendToTypefully = (replyingToLink, utm_content) =>
         typefullyContent = `${typefullyContent}---typefully-split---`;
       }
 
-      let tweetTextItems = Array.from(document.querySelectorAll(`[data-testid="tweetTextarea_${tweetTextAreaNumber}"] [data-text="true"]`));
+      let tweetTextItems = Array.from(
+        document.querySelectorAll(
+          `[data-testid="tweetTextarea_${tweetTextAreaNumber}"] [data-text="true"]`,
+        ),
+      );
 
       // remove trailing newlines at end of tweets (there is always one last <br> on the first tweet DOM node)
-      tweetTextItems = tweetTextItems.filter((item, index) => !(item.tagName === "BR" && index === tweetTextItems.length - 1));
+      tweetTextItems = tweetTextItems.filter(
+        (item, index) => !(item.tagName === "BR" && index === tweetTextItems.length - 1),
+      );
 
       tweetTextItems.forEach((item, index) => {
         const isLastItem = index === tweetTextItems.length - 1;

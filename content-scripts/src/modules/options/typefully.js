@@ -18,7 +18,7 @@ export const changeTypefullyEnhancementsButtons = (typefullyEnhancementsButtons)
         #typefully-video-download-button {
           display: none;
         }
-        `
+        `,
       );
       break;
 

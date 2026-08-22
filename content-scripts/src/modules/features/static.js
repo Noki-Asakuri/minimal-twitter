@@ -60,7 +60,12 @@ import {
   KeyXPremiumButton,
 } from "../../../../storage-keys";
 import { changeCustomCss } from "../options/customCss";
-import { changeFollowingAndFollowersCounts, changeLikeCount, changeReplyCount, changeRetweetCount } from "../options/hideVanityCounts";
+import {
+  changeFollowingAndFollowersCounts,
+  changeLikeCount,
+  changeReplyCount,
+  changeRetweetCount,
+} from "../options/hideVanityCounts";
 import changeHideViewCounts from "../options/hideViewCount";
 import {
   changeChatDrawerButton,

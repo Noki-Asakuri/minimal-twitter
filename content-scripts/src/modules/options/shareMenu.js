@@ -1,7 +1,9 @@
 import addStyles, { removeStyles } from "../utilities/addStyles";
 
-const sendViaDirectMessageMenuItem = 'div[role="menuitem"]:has(path[clip-rule="evenodd"][d^="M8.902"])';
-const sendViaChatMenuItem = 'div[role="menuitem"]:has(path[clip-rule="evenodd"][d^="M12 4c-4.418"])';
+const sendViaDirectMessageMenuItem =
+  'div[role="menuitem"]:has(path[clip-rule="evenodd"][d^="M8.902"])';
+const sendViaChatMenuItem =
+  'div[role="menuitem"]:has(path[clip-rule="evenodd"][d^="M12 4c-4.418"])';
 const sharePostViaMenuItem = 'div[role="menuitem"]:has(path[d^="M12 2.59"])';
 const postVideoMenuItem = 'div[role="menuitem"]:has(path[d^="M10.938 4.5"])';
 const downloadVideoMenuItem = 'div[role="menuitem"]:has(path[d^="M11.99 16"])';

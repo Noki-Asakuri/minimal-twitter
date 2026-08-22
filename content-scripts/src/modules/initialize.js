@@ -23,8 +23,12 @@ export const addStylesheets = async () => {
   // Only fetch from CDN in production
   if (!(await isDevelopmentMode())) {
     try {
-      const mainStylesheetFromCDN = await fetch("https://raw.githubusercontent.com/typefully/minimal-twitter/main/css/main.css");
-      const typefullyStylesheetFromCDN = await fetch("https://raw.githubusercontent.com/typefully/minimal-twitter/main/css/typefully.css");
+      const mainStylesheetFromCDN = await fetch(
+        "https://raw.githubusercontent.com/typefully/minimal-twitter/main/css/main.css",
+      );
+      const typefullyStylesheetFromCDN = await fetch(
+        "https://raw.githubusercontent.com/typefully/minimal-twitter/main/css/typefully.css",
+      );
       const mainText = (await mainStylesheetFromCDN.text()).trim();
       const typefullyText = (await typefullyStylesheetFromCDN.text()).trim();
       addStyleSheet("external", null, mainText.concat("\n\n").concat(typefullyText));
@@ -59,7 +63,7 @@ const addResizeListener = () => {
     "resize",
     debounce(() => {
       runDynamicFeatures();
-    }, 50)
+    }, 50),
   );
 };
 

@@ -10,8 +10,15 @@
   border-radius: 9999px;
   font-weight: 700;
   font-size: 15px;
-  font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
+  font-family:
+    TwitterChirp,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
   line-height: 20px;
   overflow-wrap: break-word;
   display: flex;
@@ -82,8 +89,15 @@ body.mt-writerMode-on .typefully-save-draft-button {
 }
 
 #typefully-callout-box {
-  font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
+  font-family:
+    TwitterChirp,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
   color: var(--main-text-color);
   width: auto;
   max-width: 100%;
@@ -179,8 +193,15 @@ button .typefully-logo:only-child,
   padding-right: 22px;
   font-weight: 700;
   font-size: 15px;
-  font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
+  font-family:
+    TwitterChirp,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -192,8 +213,15 @@ button .typefully-logo:only-child,
   color: var(--accent-color);
   font-weight: 700;
   font-size: 15px;
-  font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
+  font-family:
+    TwitterChirp,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;

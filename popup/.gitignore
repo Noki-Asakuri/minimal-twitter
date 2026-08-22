@@ -8,11 +8,11 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-
 # production
-/build
+/dist
+
+# obsolete Next.js build cache
+/.next/
 
 # misc
 .DS_Store

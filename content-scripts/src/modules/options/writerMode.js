@@ -1,7 +1,11 @@
 import { KeyWriterMode } from "../../../../storage-keys";
 import selectors from "../../selectors";
 import svgAssets from "../svgAssets";
-import { createTypefullyLinkElement, createTypefullyLogo, getCurrentTextAndSendToTypefully } from "../typefullyPlugs";
+import {
+  createTypefullyLinkElement,
+  createTypefullyLogo,
+  getCurrentTextAndSendToTypefully,
+} from "../typefullyPlugs";
 import addStyles, { removeStyles, stylesExist } from "../utilities/addStyles";
 import addTooltip, { hideAllTooltips } from "../utilities/addTooltip";
 import addTypefullyBox from "../utilities/addTypefullyBox";
@@ -19,7 +23,11 @@ let t; // Typefully Plug timeout
 let zt1; // Zen Writer Mode timeout 1
 let zt2; // Zen Writer Mode timeout 2
 export const changeWriterMode = (writerMode) => {
-  if (window.location.pathname.includes("/home") || window.location.pathname === "/" || window.location.pathname.includes("/compose/tweet")) {
+  if (
+    window.location.pathname.includes("/home") ||
+    window.location.pathname === "/" ||
+    window.location.pathname.includes("/compose/tweet")
+  ) {
     switch (writerMode) {
       case "on":
         document.addEventListener("keydown", escKeyListener);
@@ -77,7 +85,7 @@ export const changeWriterMode = (writerMode) => {
             ${selectors.modalWrapper} > div > div > div {
               padding-bottom: 10vh;
             }
-            `
+            `,
         );
 
         clearTimeout(t);
@@ -117,7 +125,10 @@ export const addTypefullyPlugToWriterMode = async () => {
 
     /* ---------------------------- Typefully Button ---------------------------- */
 
-    const typefullyLinkElement = createTypefullyLinkElement("typefully-writermode-link", "typefully-save-draft-button ghost");
+    const typefullyLinkElement = createTypefullyLinkElement(
+      "typefully-writermode-link",
+      "typefully-save-draft-button ghost",
+    );
     typefullyLinkElement.addEventListener("click", () => {
       getCurrentTextAndSendToTypefully();
     });
@@ -142,13 +153,9 @@ export const addTypefullyPlugToWriterMode = async () => {
 </ul>
 <p>Powered by <a href="${url}" target="_blank">Typefully</a>, the makers of the Minimal Twitter extension.</p>`;
 
-    addTypefullyBox(
-      main,
-      innerHTML,
-      {
-        withArrow: true,
-      }
-    );
+    addTypefullyBox(main, innerHTML, {
+      withArrow: true,
+    });
 
     main.appendChild(typefullyLinkElement);
   }
@@ -165,14 +172,18 @@ export const removeTypefullyPlugFromWriterMode = () => {
 // Function to add an expand icon to the buttons in the tweet composer
 export const addWriterModeButton = async () => {
   const composerButtonInner = document.querySelector(
-    `${selectors.mainColumn} nav[role="navigation"] [role="tablist"][data-testid="ScrollSnap-List"] div[role="presentation"]:last-child div[role="button"]`
+    `${selectors.mainColumn} nav[role="navigation"] [role="tablist"][data-testid="ScrollSnap-List"] div[role="presentation"]:last-child div[role="button"]`,
   );
   // X recently wrapped these buttons in a div
   const composerButton = composerButtonInner?.parentNode;
 
   if (!composerButton) return;
 
-  if (!window.location.pathname.includes("/home") || !window.location.pathname === "/" || document.getElementById("mt-writer-mode-composer-button")) {
+  if (
+    !window.location.pathname.includes("/home") ||
+    !window.location.pathname === "/" ||
+    document.getElementById("mt-writer-mode-composer-button")
+  ) {
     return;
   }
   const writerModeButton = composerButton.cloneNode(true);
@@ -182,14 +193,16 @@ export const addWriterModeButton = async () => {
   writerModeButton.removeAttribute("data-testid");
 
   if (userSetting === "on") {
-    writerModeButton.firstChild.firstChild.firstChild.firstChild.innerHTML = svgAssets.composerWriterMode.selected;
+    writerModeButton.firstChild.firstChild.firstChild.firstChild.innerHTML =
+      svgAssets.composerWriterMode.selected;
 
     addTooltip(writerModeButton, {
       id: "writer-mode",
       title: "Close Zen Writer Mode",
     });
   } else {
-    writerModeButton.firstChild.firstChild.firstChild.firstChild.innerHTML = svgAssets.composerWriterMode.normal;
+    writerModeButton.firstChild.firstChild.firstChild.firstChild.innerHTML =
+      svgAssets.composerWriterMode.normal;
 
     addTooltip(writerModeButton, {
       id: "writer-mode",
@@ -212,7 +225,7 @@ export const addWriterModeButton = async () => {
         background-color: rgba(var(--accent-color-rgb), 0.1);
         border-radius: 9999px;
       }
-      `
+      `,
     );
   }
 };
@@ -233,14 +246,16 @@ const toggleWriterMode = async () => {
   hideAllTooltips();
 
   if (userSetting === "off") {
-    writerModeButton.firstChild.firstChild.firstChild.innerHTML = svgAssets.composerWriterMode.selected;
+    writerModeButton.firstChild.firstChild.firstChild.innerHTML =
+      svgAssets.composerWriterMode.selected;
 
     addTooltip(writerModeButton, {
       id: "writer-mode",
       title: "Close Zen Writer Mode",
     });
   } else {
-    writerModeButton.firstChild.firstChild.firstChild.innerHTML = svgAssets.composerWriterMode.normal;
+    writerModeButton.firstChild.firstChild.firstChild.innerHTML =
+      svgAssets.composerWriterMode.normal;
 
     addTooltip(writerModeButton, {
       id: "writer-mode",

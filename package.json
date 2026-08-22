@@ -16,16 +16,18 @@
     "bump-version": "bun ./bump-version.js",
     "content-scripts:build": "bun run --cwd content-scripts build",
     "content-scripts:watch": "bun run --cwd content-scripts watch",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "popup:build": "bun run --cwd popup build",
-    "popup:dev": "bun run --cwd popup dev",
-    "popup:lint": "bun run --cwd popup lint"
+    "popup:dev": "bun run --cwd popup dev"
   },
   "dependencies": {
-    "fs-extra": "^11.1.0",
+    "fs-extra": "^11.4.0",
     "node-cmd": "^5.0.0",
     "zip-local": "^0.3.5"
   },
   "devDependencies": {
-    "@types/fs-extra": "^9.0.13"
+    "@types/fs-extra": "^11.0.4",
+    "prettier": "3.9.6"
   }
 }

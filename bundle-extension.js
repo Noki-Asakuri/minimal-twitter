@@ -17,8 +17,7 @@ const runCommand = (command, yes) =>
   });
 
 const canRenderSpinner =
-  typeof process.stdout.clearLine === "function" &&
-  typeof process.stdout.cursorTo === "function";
+  typeof process.stdout.clearLine === "function" && typeof process.stdout.cursorTo === "function";
 
 const clearSpinnerLine = () => {
   if (!canRenderSpinner) {
@@ -65,11 +64,7 @@ const MANIFEST_CHROME = {
   content_scripts: [
     {
       run_at: "document_end",
-      matches: [
-        "https://twitter.com/*",
-        "https://mobile.twitter.com/*",
-        "https://x.com/*",
-      ],
+      matches: ["https://twitter.com/*", "https://mobile.twitter.com/*", "https://x.com/*"],
       js: ["dist/main.js"],
     },
   ],
@@ -82,11 +77,7 @@ const MANIFEST_CHROME = {
         "https://cdn.jsdelivr.net/gh/typefully/minimal-twitter@5.1/css/main.css",
         "https://cdn.jsdelivr.net/gh/typefully/minimal-twitter@5.1/css/typefully.css",
       ],
-      matches: [
-        "https://twitter.com/*",
-        "https://mobile.twitter.com/*",
-        "https://x.com/*",
-      ],
+      matches: ["https://twitter.com/*", "https://mobile.twitter.com/*", "https://x.com/*"],
     },
   ],
   action: {
@@ -115,11 +106,7 @@ const MANIFEST_FIREFOX = {
   content_scripts: [
     {
       run_at: "document_idle",
-      matches: [
-        "https://twitter.com/*",
-        "https://mobile.twitter.com/*",
-        "https://x.com/*",
-      ],
+      matches: ["https://twitter.com/*", "https://mobile.twitter.com/*", "https://x.com/*"],
       js: ["dist/main.js"],
     },
   ],
@@ -176,9 +163,7 @@ const bundle = async (manifest, bundleDirectory) => {
           resolve();
         } catch (error) {
           clearInterval(intervalId);
-          console.error(
-            `Error running build script for ${directory}: ${error}`
-          );
+          console.error(`Error running build script for ${directory}: ${error}`);
           reject(error);
         }
       });
@@ -190,9 +175,9 @@ const bundle = async (manifest, bundleDirectory) => {
     clearSpinnerLine();
     console.log("🔥  Built popup and content scripts.");
 
-    // Bundle popup Next.js export
-    await copy("popup/out", `${bundleDirectory}`);
-    console.log(`🚗  Moved export to bundle.`);
+    // Bundle popup Vite build
+    await copy("popup/dist", `${bundleDirectory}`);
+    console.log(`🚗  Moved popup build to bundle.`);
 
     // Bundle content-scripts
     await copy("content-scripts/dist", `${bundleDirectory}/dist`);
@@ -218,7 +203,7 @@ const bundle = async (manifest, bundleDirectory) => {
     await writeFile(
       `${bundleDirectory}/manifest.json`,
       Buffer.from(JSON.stringify(manifest, null, 2)),
-      "utf8"
+      "utf8",
     );
 
     // Done.
@@ -233,8 +218,8 @@ const bundle = async (manifest, bundleDirectory) => {
     console.log(
       `🧬  Zipped \`${bundleDirectory}\` to \`bundle/${bundleDirectory.replace(
         "bundle/",
-        ""
-      )}.zip\`.`
+        "",
+      )}.zip\`.`,
     );
   } catch (error) {
     console.error(error);
@@ -268,12 +253,12 @@ const bundleBrowser = async (browser) => {
           return;
         }
 
-          let P = ["\\", "|", "/", "-"];
-          intervalId = setInterval(() => {
-            clearSpinnerLine();
-            spinner = P[P.indexOf(spinner) + 1] || P[0];
-            renderSpinner(`${spinner}   Bundling Safari...`);
-          }, 250);
+        let P = ["\\", "|", "/", "-"];
+        intervalId = setInterval(() => {
+          clearSpinnerLine();
+          spinner = P[P.indexOf(spinner) + 1] || P[0];
+          renderSpinner(`${spinner}   Bundling Safari...`);
+        }, 250);
       };
 
       startBuilding();
@@ -316,7 +301,7 @@ rl.question(
     await bundleBrowser(browser);
 
     rl.close();
-  }
+  },
 );
 
 rl.on("close", () => {

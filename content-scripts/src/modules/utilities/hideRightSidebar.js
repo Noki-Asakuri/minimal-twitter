@@ -21,7 +21,7 @@ export default async function hideRightSidebar() {
         margin: 0;
         padding: 0;
         z-index: 1;
-      }`
+      }`,
     );
   }
 }
