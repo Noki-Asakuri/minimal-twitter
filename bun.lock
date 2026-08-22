@@ -14,18 +14,22 @@
         "prettier": "3.9.6",
       },
     },
-    "content-scripts": {
+    "apps/content-scripts": {
       "name": "minimal-twitter-content-scripts",
+      "dependencies": {
+        "@minimal-twitter/shared": "workspace:*",
+      },
       "devDependencies": {
         "rolldown": "1.2.5",
       },
     },
-    "popup": {
+    "apps/popup": {
       "name": "minimal-twitter-popup",
       "dependencies": {
         "@base-ui/react": "^1.7.0",
         "@codemirror/lang-css": "6.0.1",
         "@fontsource-variable/geist": "^5.3.0",
+        "@minimal-twitter/shared": "workspace:*",
         "@uiw/react-codemirror": "4.19.7",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
@@ -52,6 +56,12 @@
         "tailwindcss": "4.3.3",
         "typescript": "5.9.3",
         "vite": "8.2.2",
+      },
+    },
+    "packages/shared": {
+      "name": "@minimal-twitter/shared",
+      "devDependencies": {
+        "typescript": "5.9.3",
       },
     },
   },
@@ -171,6 +181,8 @@
     "@lezer/lr": ["@lezer/lr@1.4.10", "", { "dependencies": { "@lezer/common": "^1.0.0" } }, "sha512-rnCpTIBafOx4mRp43xOxDJbFipJm/c0cia/V5TiGlhmMa+wsSdoGmUN3w5Bqrks/09Q/D4tNAmWaT8p6NRi77A=="],
 
     "@marijn/find-cluster-break": ["@marijn/find-cluster-break@1.0.2", "", {}, "sha512-l0h88YhZFyKdXIFNfSWpyjStDjGHwZ/U7iobcK1cQQD8sejsONdQtTVU+1wVN1PBw40PiiHB1vA5S7VTfQiP9g=="],
+
+    "@minimal-twitter/shared": ["@minimal-twitter/shared@workspace:packages/shared"],
 
     "@modelcontextprotocol/sdk": ["@modelcontextprotocol/sdk@1.30.0", "", { "dependencies": { "@hono/node-server": "^1.19.9 || ^2.0.5", "ajv": "^8.17.1", "ajv-formats": "^3.0.1", "content-type": "^1.0.5", "cors": "^2.8.5", "cross-spawn": "^7.0.5", "eventsource": "^3.0.2", "eventsource-parser": "^3.0.0", "express": "^5.2.1", "express-rate-limit": "^8.2.1", "hono": "^4.11.4", "jose": "^6.1.3", "json-schema-typed": "^8.0.2", "pkce-challenge": "^5.0.0", "raw-body": "^3.0.0", "zod": "^3.25 || ^4.0", "zod-to-json-schema": "^3.25.1" }, "peerDependencies": { "@cfworker/json-schema": "^4.1.1" }, "optionalPeers": ["@cfworker/json-schema"] }, "sha512-xKd8OIzlqNzcqcNumGAa6g+PW2kjD5vrpcKOnfldAUPP3j7lnqMPwlTXQm8gF+UwH72z0lqaRbjr9hqGz0eITA=="],
 
@@ -658,9 +670,9 @@
 
     "mimic-function": ["mimic-function@5.0.1", "", {}, "sha512-VP79XUPxV2CigYP3jWwAUFSku2aKqBH7uTAapFWCBqutsbmDo96KY5o8uh6U+/YSIn5OxJnXp73beVkpqMIGhA=="],
 
-    "minimal-twitter-content-scripts": ["minimal-twitter-content-scripts@workspace:content-scripts"],
+    "minimal-twitter-content-scripts": ["minimal-twitter-content-scripts@workspace:apps/content-scripts"],
 
-    "minimal-twitter-popup": ["minimal-twitter-popup@workspace:popup"],
+    "minimal-twitter-popup": ["minimal-twitter-popup@workspace:apps/popup"],
 
     "minimatch": ["minimatch@10.2.6", "", { "dependencies": { "brace-expansion": "^5.0.8" } }, "sha512-vpLQEs+VLCr1nU0BXS07maYoFwlDAH0gngQuuttxIwutDFEMHq2blX+8vpgxDdK3J1PwjCJiep77OitTZ4Ll1A=="],
 

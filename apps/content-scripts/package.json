@@ -1,0 +1,16 @@
+{
+  "name": "minimal-twitter-content-scripts",
+  "source": "src/index.js",
+  "main": "dist/main.js",
+  "scripts": {
+    "watch": "rolldown -c rolldown.config.mjs --watch",
+    "build": "rolldown -c rolldown.config.mjs"
+  },
+  "dependencies": {
+    "@minimal-twitter/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "rolldown": "1.2.5"
+  },
+  "license": "MIT"
+}

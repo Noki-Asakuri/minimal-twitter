@@ -1,6 +1,7 @@
 node_modules
+
+bundle
 dist
 out
-bundle/chrome
-bundle/firefox
+
 *.zip
