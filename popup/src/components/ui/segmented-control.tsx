@@ -15,7 +15,7 @@ type SegmentedControlProps = {
   storageKey: StorageKey;
 };
 
-export const SegmentedControl = ({ segments, storageKey }: SegmentedControlProps) => {
+export function SegmentedControl({ segments, storageKey }: SegmentedControlProps) {
   const [value, setValue] = useState<string | null>(null);
 
   useEffect(() => {
@@ -64,4 +64,4 @@ export const SegmentedControl = ({ segments, storageKey }: SegmentedControlProps
       ))}
     </ToggleGroup>
   );
-};
+}

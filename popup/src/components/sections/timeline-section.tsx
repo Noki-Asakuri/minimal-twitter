@@ -1,14 +1,14 @@
-import ControlsWrapper from "@/components/ui/ControlsWrapper";
-import SectionLabel from "@/components/ui/SectionLabel";
-import SwitchControl from "@/components/ui/SwitchControl";
 import { LocalStorageCheckboxControl } from "@/components/ui/checkboxes";
+import ControlsWrapper from "@/components/ui/controls-wrapper";
+import SectionLabel from "@/components/ui/section-label";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
+import SwitchControl from "@/components/ui/switch-control";
 
 import useMounted from "@/utilities/hooks/useMounted";
 
-import TimelineWidthSlider from "../controls/TimelineWidthSlider";
-import VanityCheckboxes from "../controls/VanityCheckboxes";
+import TimelineWidthSlider from "../controls/timeline-width-slider";
+import VanityCheckboxes from "../controls/vanity-checkboxes";
 
 import {
   KeyHideOldReposts,
@@ -25,7 +25,7 @@ import {
   KeyWriterMode,
 } from "../../../../storage-keys";
 
-const TimelineSection = () => {
+function TimelineSection() {
   const mounted = useMounted();
 
   return (
@@ -108,6 +108,6 @@ const TimelineSection = () => {
       </p>
     </section>
   );
-};
+}
 
 export default TimelineSection;

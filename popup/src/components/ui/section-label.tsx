@@ -6,7 +6,7 @@ type SectionLabelProps = {
   children?: ReactNode;
 };
 
-const SectionLabel = ({ htmlFor, className = "", children }: SectionLabelProps) => {
+function SectionLabel({ htmlFor, className = "", children }: SectionLabelProps) {
   return (
     <h2
       id={`${htmlFor || "user-control-interface"}-label`}
@@ -15,6 +15,6 @@ const SectionLabel = ({ htmlFor, className = "", children }: SectionLabelProps) 
       {children || "Interface"}
     </h2>
   );
-};
+}
 
 export default SectionLabel;

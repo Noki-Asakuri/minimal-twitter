@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Slider } from "@/components/ui/slider";
 
-import { KeyTimelineWidth } from "../../../../storage-keys";
 import { getStorage, setStorage } from "../../utilities/chromeStorage";
+
+import { KeyTimelineWidth } from "../../../../storage-keys";
 
 const trackDots = [600, 650, 700, 750, 800];
 
-const TimelineWidthSlider = () => {
+function TimelineWidthSlider() {
   const [userTrack, setUserTrack] = useState(700);
 
   useEffect(() => {
@@ -77,6 +78,6 @@ const TimelineWidthSlider = () => {
       </div>
     </Field>
   );
-};
+}
 
 export default TimelineWidthSlider;

@@ -1,5 +1,5 @@
-import ControlsWrapper from "@/components/ui/ControlsWrapper";
-import SwitchControl from "@/components/ui/SwitchControl";
+import ControlsWrapper from "@/components/ui/controls-wrapper";
+import SwitchControl from "@/components/ui/switch-control";
 
 import { KeyExtensionStatus } from "../../../../storage-keys";
 

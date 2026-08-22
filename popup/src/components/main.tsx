@@ -1,10 +1,10 @@
-import AdvancedSection from "./sections/AdvancedSection";
-import ExtensionStatus from "./sections/ExtensionStatus";
-import InterfaceSection from "./sections/InterfaceSection";
-import NavigationSection from "./sections/NavigationSection";
-import ShareMenuSection from "./sections/ShareMenuSection";
-import TimelineSection from "./sections/TimelineSection";
-import TypefullySection from "./sections/TypefullySection";
+import AdvancedSection from "./sections/advanced-section";
+import ExtensionStatus from "./sections/extension-status";
+import InterfaceSection from "./sections/interface-section";
+import NavigationSection from "./sections/navigation-section";
+import ShareMenuSection from "./sections/share-menu-section";
+import TimelineSection from "./sections/timeline-section";
+import TypefullySection from "./sections/typefully-section";
 
 export default function Main() {
   return (

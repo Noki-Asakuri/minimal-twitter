@@ -3,9 +3,9 @@ import "./styles/globals.css";
 import { createRoot } from "react-dom/client";
 
 import Main from "./components/main";
-import Footer from "./components/sections/Footer";
-import Header from "./components/sections/Header";
-import Container from "./components/ui/Container";
+import Footer from "./components/sections/footer";
+import Header from "./components/sections/header";
+import Container from "./components/ui/container";
 
 document.documentElement.classList.toggle(
   "dark",

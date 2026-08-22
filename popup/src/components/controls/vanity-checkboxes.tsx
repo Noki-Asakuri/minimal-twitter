@@ -17,7 +17,7 @@ import {
 
 type VanityType = "all" | "reply" | "retweet" | "like" | "follow";
 
-const VanityCheckboxes = () => {
+function VanityCheckboxes() {
   const [showVanityCheckboxes, setShowVanityCheckboxes] = useState(false);
   const [hideAll, setHideAll] = useState(false);
   const [hideReply, setHideReply] = useState(false);
@@ -214,6 +214,6 @@ const VanityCheckboxes = () => {
       </CollapsibleContent>
     </Collapsible>
   );
-};
+}
 
 export default VanityCheckboxes;

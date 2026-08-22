@@ -16,27 +16,29 @@ type CheckboxControlProps = {
   crossedIcon?: boolean;
 };
 
-export const CheckboxControl = ({
+export function CheckboxControl({
   id,
   label,
   labelExtras,
   onCheckedChange,
   checked,
   crossedIcon,
-}: CheckboxControlProps) => (
-  <Field orientation="horizontal">
-    <div className="flex min-w-0 flex-auto items-center gap-1">
-      <FieldLabel htmlFor={id}>{label}</FieldLabel>
-      {labelExtras}
-    </div>
-    <Checkbox
-      onCheckedChange={onCheckedChange}
-      checked={checked}
-      id={id}
-      indicator={crossedIcon ? <XIcon /> : undefined}
-    />
-  </Field>
-);
+}: CheckboxControlProps) {
+  return (
+    <Field orientation="horizontal">
+      <div className="flex min-w-0 flex-auto items-center gap-1">
+        <FieldLabel htmlFor={id}>{label}</FieldLabel>
+        {labelExtras}
+      </div>
+      <Checkbox
+        onCheckedChange={onCheckedChange}
+        checked={checked}
+        id={id}
+        indicator={crossedIcon ? <XIcon /> : undefined}
+      />
+    </Field>
+  );
+}
 
 type LocalStorageCheckboxControlProps = {
   label: ReactNode;
@@ -44,11 +46,11 @@ type LocalStorageCheckboxControlProps = {
   crossedIcon?: boolean;
 };
 
-export const LocalStorageCheckboxControl = ({
+export function LocalStorageCheckboxControl({
   label,
   storageKey,
   crossedIcon,
-}: LocalStorageCheckboxControlProps) => {
+}: LocalStorageCheckboxControlProps) {
   const [checked, setChecked] = useStorageKeyState(storageKey);
 
   return (
@@ -60,4 +62,4 @@ export const LocalStorageCheckboxControl = ({
       crossedIcon={crossedIcon}
     />
   );
-};
+}

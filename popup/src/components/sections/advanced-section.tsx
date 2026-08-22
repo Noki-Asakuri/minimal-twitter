@@ -3,14 +3,15 @@ import CodeMirror from "@uiw/react-codemirror";
 import debounce from "lodash.debounce";
 import { useEffect, useMemo, useState } from "react";
 
-import SectionLabel from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import SectionLabel from "@/components/ui/section-label";
 
-import { KeyCustomCss } from "../../../../storage-keys";
 import { getStorage, setStorage } from "../../utilities/chromeStorage";
 
-const AdvancedSection = () => {
+import { KeyCustomCss } from "../../../../storage-keys";
+
+function AdvancedSection() {
   const [showEditor, setShowEditor] = useState(false);
   const [cssText, setCssText] = useState("");
 
@@ -74,6 +75,6 @@ const AdvancedSection = () => {
       )}
     </section>
   );
-};
+}
 
 export default AdvancedSection;

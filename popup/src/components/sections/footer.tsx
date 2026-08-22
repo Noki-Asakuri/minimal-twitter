@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 
-const Footer = () => {
+function Footer() {
   return (
     <footer className="flex w-full flex-col items-center px-2 pt-6 pb-8">
       <Button
@@ -13,6 +13,6 @@ const Footer = () => {
       </Button>
     </footer>
   );
-};
+}
 
 export default Footer;
