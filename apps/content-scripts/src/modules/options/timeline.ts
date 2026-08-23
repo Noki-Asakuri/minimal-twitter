@@ -9,58 +9,86 @@ function setProfileMediaTabLabel(tab: Element, label: string): void {
   );
   if (labelElement && labelElement.textContent !== label) labelElement.textContent = label;
 }
-function setAttribute(element: Element, name: string, value: string): void {
-  if (element.getAttribute(name) !== value) element.setAttribute(name, value);
-}
 function removeProfileTabIndicator(tab: Element): void {
   const tabContent = tab.firstElementChild;
   const indicator = tabContent?.lastElementChild;
   if (indicator && !indicator.textContent?.trim()) indicator.remove();
 }
+function navigateToProfileMedia(href: string): void {
+  if (`${window.location.pathname}${window.location.search}` === href) return;
+  window.history.pushState(window.history.state, "", href);
+  window.dispatchEvent(new PopStateEvent("popstate", { state: window.history.state }));
+}
+function createProfileMediaTab(
+  nativeTabWrapper: HTMLElement,
+  label: string,
+  href: string,
+  selected: boolean,
+): HTMLElement | null {
+  const tabWrapper = nativeTabWrapper.cloneNode(true) as HTMLElement;
+  const tab = tabWrapper.matches("[role='tab']")
+    ? tabWrapper
+    : tabWrapper.querySelector<HTMLElement>("[role='tab']");
+  if (!tab) return null;
+  tabWrapper.style.removeProperty("display");
+  tabWrapper.setAttribute(profileMediaTabAttribute, label.toLowerCase());
+  tab.querySelectorAll("svg").forEach((icon) => icon.remove());
+  tab.querySelectorAll("[aria-haspopup], [aria-expanded]").forEach((element) => {
+    element.removeAttribute("aria-haspopup");
+    element.removeAttribute("aria-expanded");
+  });
+  tab.setAttribute("href", href);
+  tab.setAttribute("aria-selected", String(selected));
+  setProfileMediaTabLabel(tab, label);
+  if (!selected) removeProfileTabIndicator(tab);
+  tab.addEventListener("click", (event) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+      return;
+    event.preventDefault();
+    navigateToProfileMedia(href);
+    splitProfileMediaTab();
+  });
+  return tabWrapper;
+}
 export function splitProfileMediaTab(): void {
   const mediaTab = Array.from(
     document.querySelectorAll<HTMLElement>(`${selectors.mainColumn} [role="tab"][href]`),
   ).find((tab) => {
+    if (tab.closest(`[${profileMediaTabAttribute}]`)) return false;
     const href = tab.getAttribute("href");
     if (!href) return false;
     const url = new URL(href, window.location.origin);
-    return /^\/[A-Za-z0-9_]+\/media\/?$/.test(url.pathname) && !url.search;
+    return /^\/[A-Za-z0-9_]+\/media\/?$/.test(url.pathname);
   });
   if (!mediaTab) return;
   const tablist = mediaTab.closest("[role='tablist']");
   const mediaTabWrapper = mediaTab.parentElement;
   if (!tablist || !mediaTabWrapper) return;
-  let imagesTabWrapper = tablist.querySelector<HTMLElement>(
-    `[${profileMediaTabAttribute}="images"]`,
-  );
-  if (!imagesTabWrapper) {
-    imagesTabWrapper = mediaTabWrapper.cloneNode(true) as HTMLElement;
-    imagesTabWrapper.setAttribute(profileMediaTabAttribute, "images");
-  }
-  if (mediaTabWrapper.nextElementSibling !== imagesTabWrapper)
-    mediaTabWrapper.after(imagesTabWrapper);
-  const imagesTab = imagesTabWrapper.matches("[role='tab']")
-    ? imagesTabWrapper
-    : imagesTabWrapper.querySelector("[role='tab']");
-  if (!imagesTab) return;
   const mediaHref = mediaTab.getAttribute("href");
   if (!mediaHref) return;
   const mediaUrl = new URL(mediaHref, window.location.origin);
-  mediaUrl.searchParams.set("filter", "photo");
-  setAttribute(imagesTab, "href", `${mediaUrl.pathname}${mediaUrl.search}`);
-  setProfileMediaTabLabel(mediaTab, "Videos");
-  setProfileMediaTabLabel(imagesTab, "Images");
+  const videosHref = mediaUrl.pathname;
+  const imagesHref = `${mediaUrl.pathname}?filter=photo`;
   const imagesSelected =
     window.location.pathname === mediaUrl.pathname &&
     new URLSearchParams(window.location.search).get("filter") === "photo";
-  setAttribute(
-    mediaTab,
-    "aria-selected",
-    String(window.location.pathname === mediaUrl.pathname && !imagesSelected),
-  );
-  setAttribute(imagesTab, "aria-selected", String(imagesSelected));
-  if (imagesSelected) removeProfileTabIndicator(mediaTab);
-  else removeProfileTabIndicator(imagesTab);
+  const videosSelected = window.location.pathname === mediaUrl.pathname && !imagesSelected;
+  const renderState = `${mediaUrl.pathname}:${imagesSelected ? "images" : videosSelected ? "videos" : "profile"}`;
+  const existingTabs = tablist.querySelectorAll<HTMLElement>(`[${profileMediaTabAttribute}]`);
+  if (
+    mediaTabWrapper.style.display === "none" &&
+    existingTabs.length === 2 &&
+    tablist.getAttribute(profileMediaTabAttribute) === renderState
+  )
+    return;
+  existingTabs.forEach((tab) => tab.remove());
+  const videosTab = createProfileMediaTab(mediaTabWrapper, "Videos", videosHref, videosSelected);
+  const imagesTab = createProfileMediaTab(mediaTabWrapper, "Images", imagesHref, imagesSelected);
+
+  if (!videosTab || !imagesTab) return;
+  mediaTabWrapper.style.display = "none";
+  tablist.setAttribute(profileMediaTabAttribute, renderState);
+  mediaTabWrapper.after(videosTab, imagesTab);
 }
 export function changeTimelineWidth(timelineWidth?: number): void {
   switch (timelineWidth) {
