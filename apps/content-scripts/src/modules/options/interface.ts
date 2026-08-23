@@ -35,28 +35,51 @@ export function changeTitleNotifications(tf?: string): void {
   const target = document.querySelector("title");
   if (target) observer.observe(target, config);
 }
-// Function to change to Inter Font
-export function changeInterFont(interFont?: string): void {
-  switch (interFont) {
-    case "on":
-      addStyles(
-        "interFont",
-        `
-        @font-face {
-          font-family: 'Inter';
-          src: url('${chrome.runtime.getURL("fonts/inter-subset.woff2")}') format('woff2');
-        }
-
-        div, span, input, textarea {
-          font-family: Inter, TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-        }
-        `,
-      );
-      break;
-    case "off":
-      removeStyles("interFont");
-      break;
+export function changeFontFamily(fontFamily?: string): void {
+  if (!fontFamily || fontFamily === "default") {
+    removeStyles("fontFamily");
+    return;
   }
+
+  let fontFace = "";
+  let selectedFontFamily = JSON.stringify(fontFamily);
+
+  if (fontFamily === "builtin:inter") {
+    selectedFontFamily = '"Minimal Twitter Inter"';
+    fontFace = `
+      @font-face {
+        font-family: "Minimal Twitter Inter";
+        src: url("${chrome.runtime.getURL("fonts/inter-subset.woff2")}") format("woff2");
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: swap;
+      }
+    `;
+  }
+
+  if (fontFamily === "builtin:geist") {
+    selectedFontFamily = '"Minimal Twitter Geist"';
+    fontFace = `
+      @font-face {
+        font-family: "Minimal Twitter Geist";
+        src: url("${chrome.runtime.getURL("fonts/geist-latin.woff2")}") format("woff2");
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: swap;
+      }
+    `;
+  }
+
+  addStyles(
+    "fontFamily",
+    `
+      ${fontFace}
+
+      body, div, span, input, textarea, button, select {
+        font-family: ${selectedFontFamily}, TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+      }
+    `,
+  );
 }
 // Function to change Tweet Button
 export function changeTweetButton(tweetButton?: string): void {

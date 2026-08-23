@@ -21,7 +21,7 @@ import {
   KeyHideSameAuthorReposts,
   KeyHideViewCount,
   KeyHomeButton,
-  KeyInterFont,
+  KeyFontFamily,
   KeyJobsButton,
   KeyLikeCount,
   KeyListsButton,
@@ -70,7 +70,7 @@ import changeHideViewCounts from "@content/modules/options/hide-view-count";
 import {
   changeChatDrawerButton,
   changeHideSearchBar,
-  changeInterFont,
+  changeFontFamily,
   changeTitleNotifications,
   changeTransparentSearchBar,
   changeTweetButton,
@@ -150,7 +150,7 @@ const staticFeatures = {
     hideGrokDrawer(data[KeyHideGrokDrawer]);
   },
   interface(data: Partial<Preferences>) {
-    changeInterFont(data[KeyInterFont]);
+    changeFontFamily(data[KeyFontFamily]);
     changeHideSearchBar(data[KeySearchBar]);
     changeTransparentSearchBar(data[KeyTransparentSearch]);
     changeTitleNotifications(data[KeyTitleNotifications]);

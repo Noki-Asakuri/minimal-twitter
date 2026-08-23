@@ -1,10 +1,10 @@
+import FontSelector from "@/components/controls/font-selector";
 import ControlsWrapper from "@/components/ui/controls-wrapper";
 import SectionLabel from "@/components/ui/section-label";
 import SwitchControl from "@/components/ui/switch-control";
 
 import {
   KeyChatDrawerButton,
-  KeyInterFont,
   KeySearchBar,
   KeyTitleNotifications,
   KeyTransparentSearch,
@@ -16,7 +16,7 @@ function InterfaceSection() {
     <section className="flex flex-col gap-2" aria-labelledby="user-control-interface-label">
       <SectionLabel htmlFor="user-control-interface">Interface</SectionLabel>
       <ControlsWrapper id="user-control-interface">
-        <SwitchControl label="Inter Font" storageKey={KeyInterFont} />
+        <FontSelector />
         <SwitchControl label="Search Bar" storageKey={KeySearchBar} />
         <SwitchControl label="Transparent Search Bar" storageKey={KeyTransparentSearch} />
         <SwitchControl label="Tweet Button" storageKey={KeyTweetButton} />

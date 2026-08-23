@@ -57,6 +57,7 @@ let manifest = {
 const MANIFEST_CHROME = {
   ...manifest,
   manifest_version: 3,
+  permissions: [...manifest.permissions, "fontSettings"],
   background: {
     service_worker: "background.js",
     type: "module",
@@ -74,6 +75,7 @@ const MANIFEST_CHROME = {
         "css/main.css",
         "css/typefully.css",
         "fonts/inter-subset.woff2",
+        "fonts/geist-latin.woff2",
         "https://cdn.jsdelivr.net/gh/typefully/minimal-twitter@5.1/css/main.css",
         "https://cdn.jsdelivr.net/gh/typefully/minimal-twitter@5.1/css/typefully.css",
       ],
@@ -114,6 +116,7 @@ const MANIFEST_FIREFOX = {
     "css/main.css",
     "css/typefully.css",
     "fonts/inter-subset.woff2",
+    "fonts/geist-latin.woff2",
     "https://cdn.jsdelivr.net/gh/typefully/minimal-twitter@5.1/css/main.css",
     "https://cdn.jsdelivr.net/gh/typefully/minimal-twitter@5.1/css/typefully.css",
   ],
@@ -193,6 +196,10 @@ const bundle = async (manifest, bundleDirectory) => {
 
     // Bundle fonts
     await copy("assets/fonts", `${bundleDirectory}/fonts`);
+    await copyFile(
+      "node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2",
+      `${bundleDirectory}/fonts/geist-latin.woff2`,
+    );
     console.log(`🚗  Moved fonts to bundle.`);
 
     // Bundle images

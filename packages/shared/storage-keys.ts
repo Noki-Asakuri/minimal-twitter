@@ -42,7 +42,7 @@ export const KeyHideSameAuthorReposts = "hideSameAuthorReposts";
 export const KeyHideOldReposts = "hideOldReposts";
 export const KeyHideReactionTweets = "hideReactionTweets";
 export const KeyTypefullyEnhancementsButtons = "typefullyEnhancementsButtons";
-export const KeyInterFont = "interFont";
+export const KeyFontFamily = "fontFamily";
 export const KeyTitleNotifications = "titleNotifications";
 export const KeyCustomCss = "customCss";
 export const KeyHideViewCount = "hideViewCount";
@@ -85,7 +85,7 @@ export const allSettingsKeys = [
   KeyHideGrokDrawer,
 
   // Interface Features
-  KeyInterFont,
+  KeyFontFamily,
   KeySearchBar,
   KeyTransparentSearch,
   KeyTitleNotifications,
@@ -157,7 +157,7 @@ export const defaultPreferences = {
   [KeyHideGrokDrawer]: "on",
 
   // Interface Features
-  [KeyInterFont]: "off",
+  [KeyFontFamily]: "default",
   [KeySearchBar]: "on",
   [KeyTransparentSearch]: "off",
   [KeyTitleNotifications]: "on",
