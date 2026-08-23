@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import SectionLabel from "@/components/ui/section-label";
 
-import { getStorage, setStorage } from "../../utilities/chromeStorage";
+import { getStorage, setStorage } from "@/utilities/chromeStorage";
 
 import { KeyCustomCss } from "@minimal-twitter/shared";
 

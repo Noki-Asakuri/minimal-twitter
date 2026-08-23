@@ -1,16 +1,19 @@
 {
   "name": "minimal-twitter-content-scripts",
-  "source": "src/index.js",
+  "source": "src/index.ts",
   "main": "dist/main.js",
   "scripts": {
-    "watch": "rolldown -c rolldown.config.mjs --watch",
-    "build": "rolldown -c rolldown.config.mjs"
+    "watch": "rolldown -c rolldown.config.ts --watch",
+    "build": "bun run typecheck && rolldown -c rolldown.config.ts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@minimal-twitter/shared": "workspace:*"
   },
   "devDependencies": {
-    "rolldown": "1.2.5"
+    "@types/chrome": "0.2.7",
+    "rolldown": "1.2.5",
+    "typescript": "5.9.3"
   },
   "license": "MIT"
 }

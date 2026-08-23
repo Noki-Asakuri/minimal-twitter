@@ -11,8 +11,8 @@ import { Toggle } from "@/components/ui/toggle";
 
 import { cn } from "@/lib/utils";
 
-import type { StorageKey } from "../../utilities/chromeStorage";
-import useStorageKeyState from "../../utilities/useStorageKeyState";
+import type { StorageKey } from "@/utilities/chromeStorage";
+import useStorageKeyState from "@/utilities/useStorageKeyState";
 
 import {
   KeyArticlesButton,

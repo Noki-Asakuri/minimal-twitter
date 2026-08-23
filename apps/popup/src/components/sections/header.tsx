@@ -1,6 +1,6 @@
-import createTweetLink from "../../utilities/createTweetLink";
+import createTweetLink from "@/utilities/createTweetLink";
 
-import { createTypefullyUrl } from "../../../../content-scripts/src/modules/utilities/createTypefullyUrl";
+import { createTypefullyUrl } from "@content/modules/utilities/create-typefully-url";
 
 const tweet = {
   text: "This extensions by @typefully makes 𝕏 much nicer and cleaner",

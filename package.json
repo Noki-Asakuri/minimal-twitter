@@ -19,7 +19,8 @@
     "popup:build": "bun run --cwd apps/popup build",
     "popup:dev": "bun run --cwd apps/popup dev",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "typecheck": "bun run --parallel --workspaces --no-exit-on-error typecheck"
   },
   "dependencies": {
     "fs-extra": "^11.4.0",

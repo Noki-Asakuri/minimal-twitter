@@ -139,7 +139,7 @@ To add a new feature toggle:
 
 ## CSS and Styling
 
-- Main styles: `/css/main.css` and `/css/typefully.css`
+- Main styles: `/assets/css/main.css` and `/assets/css/typefully.css`
 - In production, extension loads cached versions from GitHub CDN
 - In development mode, only loads local CSS files
 - Content scripts inject styles dynamically via `addStyleSheet()` and `addStyles()` utilities

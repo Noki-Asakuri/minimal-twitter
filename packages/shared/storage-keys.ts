@@ -123,7 +123,7 @@ export const allSettingsKeys = [
 
   // Legacy/Unused
   KeyAllVanity,
-];
+] as const;
 
 export const defaultPreferences = {
   // Extension Status
@@ -192,4 +192,9 @@ export const defaultPreferences = {
 
   // Advanced Features
   [KeyCustomCss]: "",
+};
+
+export type PreferenceKey = keyof typeof defaultPreferences;
+export type Preferences = {
+  [Key in PreferenceKey]: (typeof defaultPreferences)[Key] extends number ? number : string;
 };
