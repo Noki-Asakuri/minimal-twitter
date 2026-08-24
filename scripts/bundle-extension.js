@@ -131,52 +131,39 @@ const MANIFEST_FIREFOX = {
   },
 };
 
+const buildExtension = async () => {
+  let intervalId;
+  let spinner = "\\";
+
+  if (canRenderSpinner) {
+    const frames = ["\\", "|", "/", "-"];
+    intervalId = setInterval(() => {
+      clearSpinnerLine();
+      spinner = frames[frames.indexOf(spinner) + 1] || frames[0];
+      renderSpinner(`${spinner}   Building popup and content scripts...`);
+    }, 250);
+  } else {
+    console.log("Building popup and content scripts...");
+  }
+
+  try {
+    await Promise.all([
+      runCommand("bun run --cwd ./apps/popup build"),
+      runCommand("bun run --cwd ./apps/content-scripts build"),
+    ]);
+  } finally {
+    clearInterval(intervalId);
+    clearSpinnerLine();
+  }
+
+  console.log("🔥  Built popup and content scripts.");
+};
+
 const bundle = async (manifest, bundleDirectory) => {
   try {
     // Remove old bundle directory
     await rm(bundleDirectory, { recursive: true, force: true }); // requires node 14+
     console.log(`🧹  Cleaned up \`${bundleDirectory}\` directory.`);
-
-    // Install workspace dependencies and run both build scripts
-    await runCommand("bun install");
-
-    const runBuildScript = (directory) => {
-      return new Promise(async (resolve, reject) => {
-        let intervalId;
-        let spinner = "\\";
-        const startBuilding = () => {
-          if (!canRenderSpinner) {
-            console.log("Building popup and content scripts...");
-            return;
-          }
-
-          let P = ["\\", "|", "/", "-"];
-          intervalId = setInterval(() => {
-            clearSpinnerLine();
-            spinner = P[P.indexOf(spinner) + 1] || P[0];
-            renderSpinner(`${spinner}   Building popup and content scripts...`);
-          }, 250);
-        };
-
-        startBuilding();
-
-        try {
-          await runCommand(`bun run --cwd ./${directory} build`);
-          clearInterval(intervalId);
-          resolve();
-        } catch (error) {
-          clearInterval(intervalId);
-          console.error(`Error running build script for ${directory}: ${error}`);
-          reject(error);
-        }
-      });
-    };
-
-    await runBuildScript("apps/popup");
-    await runBuildScript("apps/content-scripts");
-
-    clearSpinnerLine();
-    console.log("🔥  Built popup and content scripts.");
 
     // Bundle popup Vite build
     await copy("apps/popup/dist", `${bundleDirectory}`);
@@ -240,6 +227,8 @@ const bundleAll = async () => {
 };
 
 const bundleBrowser = async (browser) => {
+  await buildExtension();
+
   switch (browser.toLowerCase()) {
     case "chrome":
       await bundle(MANIFEST_CHROME, "bundle/chrome");
