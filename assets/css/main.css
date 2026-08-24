@@ -16,6 +16,63 @@ a[href*="quick_promote_web"] {
   visibility: hidden;
 }
 
+.mt-new-posts-pill {
+  position: relative;
+}
+
+.mt-new-posts-pill-native-button {
+  padding-right: 44px !important;
+}
+
+.mt-new-posts-pill-close {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: rgb(255 255 255);
+  cursor: pointer;
+}
+
+.mt-new-posts-pill-close::before,
+.mt-new-posts-pill-close::after {
+  position: absolute;
+  top: 13px;
+  left: 7px;
+  width: 14px;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+  content: "";
+}
+
+.mt-new-posts-pill-close::before {
+  transform: rotate(45deg);
+}
+
+.mt-new-posts-pill-close::after {
+  transform: rotate(-45deg);
+}
+
+.mt-new-posts-pill-close:hover {
+  background: rgb(255 255 255 / 20%);
+}
+
+.mt-new-posts-pill-close:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 1px;
+}
+
+.mt-new-posts-pill-dismissed {
+  display: none !important;
+}
+
 /* Twitter has a large screen breakpoint at 1000px */
 /* Twitter web's small screen styles (< 988px) are minimal */
 @media only screen and (min-width: 1000px) {

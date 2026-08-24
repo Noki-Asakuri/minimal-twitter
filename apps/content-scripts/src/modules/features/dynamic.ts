@@ -36,6 +36,7 @@ import {
 } from "@content/modules/options/navigation";
 import { filterReposts } from "@content/modules/options/reposts";
 import {
+  addNewPostsPillCloseButton,
   changeTimelineTabs,
   changeTrendsHomeTimeline,
   enableGrokDrawerOnGrokButtonClick,
@@ -73,6 +74,7 @@ const dynamicFeatures = {
     addSmallerSearchBarStyle();
     updateLeftSidebarPositioning();
     splitProfileMediaTab();
+    addNewPostsPillCloseButton();
     enableGrokDrawerOnGrokButtonClick(data[KeyHideGrokDrawer]);
   },
   typefullyPlugs() {

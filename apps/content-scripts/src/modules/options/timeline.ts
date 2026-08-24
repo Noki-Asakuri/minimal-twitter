@@ -3,6 +3,42 @@ import selectors from "@content/selectors";
 import addStyles, { removeStyles, stylesExist } from "@content/modules/utilities/add-styles";
 import { getStorage } from "@content/modules/utilities/storage";
 const profileMediaTabAttribute = "data-minimal-twitter-profile-media-tab";
+const newPostsPillCloseButtonClass = "mt-new-posts-pill-close";
+const newPostsPillDismissedClass = "mt-new-posts-pill-dismissed";
+
+export function addNewPostsPillCloseButton(): void {
+  const pillContainers = document.querySelectorAll<HTMLElement>(selectors.newPostsPill);
+  for (const pillContainer of pillContainers) {
+    if (
+      pillContainer.classList.contains(newPostsPillDismissedClass) ||
+      pillContainer.querySelector(`.${newPostsPillCloseButtonClass}`)
+    )
+      continue;
+
+    const pillButton = pillContainer.matches("button, [role='button']")
+      ? pillContainer
+      : pillContainer.querySelector<HTMLElement>("button, [role='button']");
+    if (!pillButton) continue;
+
+    pillContainer.classList.add("mt-new-posts-pill");
+    pillButton.classList.add("mt-new-posts-pill-native-button");
+
+    const closeButton = document.createElement("button");
+    closeButton.type = "button";
+    closeButton.className = newPostsPillCloseButtonClass;
+    closeButton.setAttribute("aria-label", "Dismiss new posts");
+    closeButton.title = "Dismiss";
+    closeButton.addEventListener("pointerdown", (event) => event.stopPropagation());
+    closeButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      pillContainer.classList.add(newPostsPillDismissedClass);
+      pillContainer.setAttribute("aria-hidden", "true");
+    });
+    pillContainer.append(closeButton);
+  }
+}
+
 function setProfileMediaTabLabel(tab: Element, label: string): void {
   const labelElement = Array.from(tab.querySelectorAll("span")).find(
     (element) => element.childElementCount === 0 && element.textContent?.trim(),

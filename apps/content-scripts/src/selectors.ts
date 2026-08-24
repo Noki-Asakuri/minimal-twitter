@@ -52,6 +52,7 @@ const selectors = {
   timelineTab: `div[role='tab']`,
   timelineOptions: `div[aria-label='Timeline options']`,
   topTweetsOn: `div[aria-label='Top Tweets on']`,
+  newPostsPill: `[data-testid="pill-container"]`,
   menuItem: `div[role='menuitem'][tabindex='0']`,
   tweetCounts,
   viewCount: tweetCounts + " a[href*='/analytics']",
