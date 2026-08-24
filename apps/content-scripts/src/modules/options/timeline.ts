@@ -2,7 +2,6 @@ import { KeyHideGrokDrawer } from "@minimal-twitter/shared";
 import selectors from "@content/selectors";
 import addStyles, { removeStyles, stylesExist } from "@content/modules/utilities/add-styles";
 import { getStorage } from "@content/modules/utilities/storage";
-const profileMediaTabAttribute = "data-minimal-twitter-profile-media-tab";
 const newPostsPillCloseButtonClass = "mt-new-posts-pill-close";
 const newPostsPillDismissedClass = "mt-new-posts-pill-dismissed";
 
@@ -39,92 +38,22 @@ export function addNewPostsPillCloseButton(): void {
   }
 }
 
-function setProfileMediaTabLabel(tab: Element, label: string): void {
-  const labelElement = Array.from(tab.querySelectorAll("span")).find(
-    (element) => element.childElementCount === 0 && element.textContent?.trim(),
-  );
-  if (labelElement && labelElement.textContent !== label) labelElement.textContent = label;
-}
-function removeProfileTabIndicator(tab: Element): void {
-  const tabContent = tab.firstElementChild;
-  const indicator = tabContent?.lastElementChild;
-  if (indicator && !indicator.textContent?.trim()) indicator.remove();
-}
-function navigateToProfileMedia(href: string): void {
-  if (`${window.location.pathname}${window.location.search}` === href) return;
-  window.history.pushState(window.history.state, "", href);
-  window.dispatchEvent(new PopStateEvent("popstate", { state: window.history.state }));
-}
-function createProfileMediaTab(
-  nativeTabWrapper: HTMLElement,
-  label: string,
-  href: string,
-  selected: boolean,
-): HTMLElement | null {
-  const tabWrapper = nativeTabWrapper.cloneNode(true) as HTMLElement;
-  const tab = tabWrapper.matches("[role='tab']")
-    ? tabWrapper
-    : tabWrapper.querySelector<HTMLElement>("[role='tab']");
-  if (!tab) return null;
-  tabWrapper.style.removeProperty("display");
-  tabWrapper.setAttribute(profileMediaTabAttribute, label.toLowerCase());
-  tab.querySelectorAll("svg").forEach((icon) => icon.remove());
-  tab.querySelectorAll("[aria-haspopup], [aria-expanded]").forEach((element) => {
-    element.removeAttribute("aria-haspopup");
-    element.removeAttribute("aria-expanded");
-  });
-  tab.setAttribute("href", href);
-  tab.setAttribute("aria-selected", String(selected));
-  setProfileMediaTabLabel(tab, label);
-  if (!selected) removeProfileTabIndicator(tab);
-  tab.addEventListener("click", (event) => {
-    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
-      return;
-    event.preventDefault();
-    navigateToProfileMedia(href);
-    splitProfileMediaTab();
-  });
-  return tabWrapper;
-}
-export function splitProfileMediaTab(): void {
+export function changeProfileMediaDefaultView(defaultView?: string): void {
   const mediaTab = Array.from(
     document.querySelectorAll<HTMLElement>(`${selectors.mainColumn} [role="tab"][href]`),
   ).find((tab) => {
-    if (tab.closest(`[${profileMediaTabAttribute}]`)) return false;
     const href = tab.getAttribute("href");
     if (!href) return false;
     const url = new URL(href, window.location.origin);
     return /^\/[A-Za-z0-9_]+\/media\/?$/.test(url.pathname);
   });
   if (!mediaTab) return;
-  const tablist = mediaTab.closest("[role='tablist']");
-  const mediaTabWrapper = mediaTab.parentElement;
-  if (!tablist || !mediaTabWrapper) return;
   const mediaHref = mediaTab.getAttribute("href");
   if (!mediaHref) return;
   const mediaUrl = new URL(mediaHref, window.location.origin);
-  const videosHref = mediaUrl.pathname;
-  const imagesHref = `${mediaUrl.pathname}?filter=photo`;
-  const imagesSelected =
-    window.location.pathname === mediaUrl.pathname &&
-    new URLSearchParams(window.location.search).get("filter") === "photo";
-  const videosSelected = window.location.pathname === mediaUrl.pathname && !imagesSelected;
-  const renderState = `${mediaUrl.pathname}:${imagesSelected ? "images" : videosSelected ? "videos" : "profile"}`;
-  const existingTabs = tablist.querySelectorAll<HTMLElement>(`[${profileMediaTabAttribute}]`);
-  if (
-    mediaTabWrapper.style.display === "none" &&
-    existingTabs.length === 2 &&
-    tablist.getAttribute(profileMediaTabAttribute) === renderState
-  )
-    return;
-  existingTabs.forEach((tab) => tab.remove());
-  const videosTab = createProfileMediaTab(mediaTabWrapper, "Videos", videosHref, videosSelected);
-  const imagesTab = createProfileMediaTab(mediaTabWrapper, "Images", imagesHref, imagesSelected);
-
-  if (!videosTab || !imagesTab) return;
-  mediaTabWrapper.style.display = "none";
-  tablist.setAttribute(profileMediaTabAttribute, renderState);
-  mediaTabWrapper.after(videosTab, imagesTab);
+  if (defaultView === "images") mediaUrl.searchParams.set("filter", "photo");
+  else mediaUrl.searchParams.delete("filter");
+  mediaTab.setAttribute("href", `${mediaUrl.pathname}${mediaUrl.search}`);
 }
 export function changeTimelineWidth(timelineWidth?: number): void {
   switch (timelineWidth) {

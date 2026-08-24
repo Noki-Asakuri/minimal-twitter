@@ -16,6 +16,7 @@ import {
   KeyHideViewCount,
   KeyListsButton,
   KeyNavigationButtonsLabels,
+  KeyProfileMediaDefaultView,
   KeyRemoveTimelineTabs,
   KeyTopicsButton,
   KeyTrendsHomeTimeline,
@@ -37,10 +38,10 @@ import {
 import { filterReposts } from "@content/modules/options/reposts";
 import {
   addNewPostsPillCloseButton,
+  changeProfileMediaDefaultView,
   changeTimelineTabs,
   changeTrendsHomeTimeline,
   enableGrokDrawerOnGrokButtonClick,
-  splitProfileMediaTab,
 } from "@content/modules/options/timeline";
 import { changeWriterMode } from "@content/modules/options/writer-mode";
 import {
@@ -63,6 +64,7 @@ const dynamicFeatures = {
       KeyHideSameAuthorReposts,
       KeyHideOldReposts,
       KeyHideReactionTweets,
+      KeyProfileMediaDefaultView,
     ]);
     changeHideViewCounts(data[KeyHideViewCount]);
     filterReposts({
@@ -73,7 +75,7 @@ const dynamicFeatures = {
     hideRightSidebar();
     addSmallerSearchBarStyle();
     updateLeftSidebarPositioning();
-    splitProfileMediaTab();
+    changeProfileMediaDefaultView(data[KeyProfileMediaDefaultView]);
     addNewPostsPillCloseButton();
     enableGrokDrawerOnGrokButtonClick(data[KeyHideGrokDrawer]);
   },

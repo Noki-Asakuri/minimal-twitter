@@ -1,6 +1,8 @@
 import { LocalStorageCheckboxControl } from "@/components/ui/checkboxes";
 import ControlsWrapper from "@/components/ui/controls-wrapper";
+import { Field, FieldLabel } from "@/components/ui/field";
 import SectionLabel from "@/components/ui/section-label";
+import { SegmentedControl } from "@/components/ui/segmented-control";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import SwitchControl from "@/components/ui/switch-control";
@@ -15,6 +17,7 @@ import {
   KeyHideReactionTweets,
   KeyHideSameAuthorReposts,
   KeyHideViewCount,
+  KeyProfileMediaDefaultView,
   KeyRemovePromotedPosts,
   KeyRemoveTimelineBorders,
   KeyRemoveTimelineTabs,
@@ -34,6 +37,16 @@ function TimelineSection() {
       {mounted ? (
         <ControlsWrapper id="user-control-timeline">
           <TimelineWidthSlider />
+          <Field orientation="horizontal">
+            <FieldLabel className="whitespace-nowrap">Default Media View</FieldLabel>
+            <SegmentedControl
+              storageKey={KeyProfileMediaDefaultView}
+              segments={[
+                { value: "videos", label: "Videos" },
+                { value: "images", label: "Images" },
+              ]}
+            />
+          </Field>
           <Separator />
           <SwitchControl label="Zen Writer Mode" storageKey={KeyWriterMode} />
           <SwitchControl label="Sticky Header" storageKey={KeyStickyHeader} />

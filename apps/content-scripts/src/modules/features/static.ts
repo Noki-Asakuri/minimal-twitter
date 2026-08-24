@@ -31,6 +31,7 @@ import {
   KeyNavigationCenter,
   KeyNotificationsButton,
   KeyPostVideoShareMenu,
+  KeyProfileMediaDefaultView,
   KeyProfileButton,
   KeyRemovePromotedPosts,
   KeyRemoveTimelineBorders,
@@ -108,6 +109,7 @@ import {
   changeSharePostViaShareMenu,
 } from "@content/modules/options/share-menu";
 import {
+  changeProfileMediaDefaultView,
   changePromotedPosts,
   changeStickyHeader,
   changeTimelineBorders,
@@ -122,6 +124,7 @@ import { changeWriterMode } from "@content/modules/options/writer-mode";
 const staticFeatures = {
   timeline(data: Partial<Preferences>) {
     changeTimelineWidth(data[KeyTimelineWidth]);
+    changeProfileMediaDefaultView(data[KeyProfileMediaDefaultView]);
     changeTimelineBorders(data[KeyRemoveTimelineBorders]);
     changeTweetBorders(data[KeyRemoveTweetBorders]);
     changeStickyHeader(data[KeyStickyHeader]);
