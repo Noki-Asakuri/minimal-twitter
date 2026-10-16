@@ -42,7 +42,7 @@ Use bundled Geist throughout. Page titles are 24px semibold, the wordmark is 20p
 
 ## Layout
 
-A 440px-wide, 600px-high shell contains the header, extension switch, four category links, and one continuous scrolling page. Below 380px, reduce horizontal insets to 16px and omit the brand mark. Keep the category strip outside the scrolling content. Place original Typefully attribution and an updated-fork link below the title; omit a footer and save-status copy.
+A 440px-wide, 600px-high shell contains the header, extension switch, four category links, and one continuous scrolling page. Below 380px, reduce horizontal insets to 16px and omit the brand mark. Keep the header, extension switch, and category strip sticky inside the shared scroll container so scrolling works over the entire popup. Place original Typefully attribution and an updated-fork link below the title; omit a footer and save-status copy.
 
 ## Elevation & Depth
 
@@ -54,7 +54,7 @@ Use softly rounded setting groups, 8px tab corners, and native switch shapes. Na
 
 ## Components
 
-Category links scroll to section anchors, and an IntersectionObserver updates aria-current as the user scrolls. Keep every section mounted to preserve editor state and pending saves. Respect reduced-motion preferences when scrolling. Feed contains reading layout and distraction filters; Navigation contains destinations, shortcuts, and labels; Appearance contains fonts, search, controls, and notifications; More contains sharing, Typefully, and custom CSS.
+Category links scroll to section anchors, and a passive scroll listener updates aria-current as the user scrolls. Keep every section mounted to preserve editor state and pending saves. Respect reduced-motion preferences when scrolling. Feed contains reading layout and distraction filters; Navigation contains destinations, shortcuts, and labels; Appearance contains fonts, search, controls, and notifications; More contains sharing, Typefully, and custom CSS.
 
 ## Do's and Don'ts
 

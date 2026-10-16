@@ -187,18 +187,11 @@ select {
   height: 600px;
 }
 
-.popup-shell > main {
-  display: flex;
-  flex: 1;
-  min-height: 0;
-  flex-direction: column;
-}
-
-.settings-tabs {
-  display: flex;
-  flex: 1;
-  min-height: 0;
-  flex-direction: column;
+.settings-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--background);
 }
 
 .popup-header {

@@ -3,7 +3,6 @@ import "./styles/globals.css";
 import { createRoot } from "react-dom/client";
 
 import Main from "./components/main";
-import Header from "./components/sections/header";
 import Container from "./components/ui/container";
 
 document.documentElement.classList.toggle(
@@ -14,7 +13,6 @@ document.documentElement.classList.toggle(
 function App() {
   return (
     <Container>
-      <Header />
       <Main />
     </Container>
   );
