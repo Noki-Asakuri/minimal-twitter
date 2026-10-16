@@ -5,8 +5,8 @@
  * These changes persist until the next settings update.
  */
 import {
-  KeyArticlesButton,
   KeyBookmarksButton,
+  KeyCallsButton,
   KeyChatDrawerButton,
   KeyCommunitiesButton,
   KeyCreatorStudioButton,
@@ -23,7 +23,6 @@ import {
   KeyHideViewCount,
   KeyHomeButton,
   KeyFontFamily,
-  KeyJobsButton,
   KeyLikeCount,
   KeyListsButton,
   KeyMessagesButton,
@@ -56,7 +55,6 @@ import {
   KeyTypefullyEnhancementsButtons,
   KeyTypefullyGrowTab,
   KeyUnreadCountBadge,
-  KeyVerifiedOrgsButton,
   KeyWriterMode,
   KeyXPremiumButton,
 } from "@minimal-twitter/shared";
@@ -80,14 +78,13 @@ import {
 } from "@content/modules/options/interface";
 import {
   changeAnalyticsButton,
-  changeArticlesButton,
   changeBookmarksButton,
+  changeCallsButton,
   changeCommunitiesButton,
   changeCreatorStudioButton,
   changeExploreButton,
   changeGrokButton,
   changeHomeButton,
-  changeJobsButton,
   changeListsButton,
   changeMessagesButton,
   changeMoreButton,
@@ -98,7 +95,6 @@ import {
   changeSidebarLogo,
   changeTopicsButton,
   changeUnreadCountBadge,
-  changeVerifiedOrgsButton,
   changeXPremiumButton,
   hideGrokDrawer,
 } from "@content/modules/options/navigation";
@@ -168,17 +164,15 @@ const staticFeatures = {
     changeExploreButton(data[KeyExploreButton]);
     changeNotificationsButton(data[KeyNotificationsButton]);
     changeMessagesButton(data[KeyMessagesButton]);
+    changeCallsButton(data[KeyCallsButton]);
     changeBookmarksButton(data[KeyBookmarksButton]);
     changeCreatorStudioButton(data[KeyCreatorStudioButton]);
-    changeJobsButton(data[KeyJobsButton]);
-    changeArticlesButton(data[KeyArticlesButton]);
     changeCommunitiesButton(data[KeyCommunitiesButton]);
     changeTopicsButton(data[KeyTopicsButton]);
     changeListsButton(data[KeyListsButton]);
     changeProfileButton(data[KeyProfileButton]);
     changeXPremiumButton(data[KeyXPremiumButton]);
     changeGrokButton(data[KeyGrokButton]);
-    changeVerifiedOrgsButton(data[KeyVerifiedOrgsButton]);
     changeAnalyticsButton(data[KeyTypefullyGrowTab]);
     changeMoreButton(data[KeyMoreButton]);
   },

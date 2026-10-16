@@ -41,20 +41,14 @@ export function changeNotificationsButton(state?: string): void {
 export function changeMessagesButton(state?: string): void {
   changeSidebarSetting("messages", state);
 }
+export function changeCallsButton(state?: string): void {
+  changeSidebarSetting("calls", state);
+}
 export function changeBookmarksButton(state?: string): void {
   changeSidebarSetting("bookmarks", state);
 }
 export function changeCreatorStudioButton(state?: string): void {
   changeSidebarSetting("creatorStudio", state);
-}
-export function changeJobsButton(state?: string): void {
-  changeSidebarSetting("jobs", state);
-}
-export function changeArticlesButton(state?: string): void {
-  changeSidebarSetting("articles", state);
-}
-export function changeVerifiedOrgsButton(state?: string): void {
-  changeSidebarSetting("verifiedOrgs", state);
 }
 export function changeProfileButton(state?: string): void {
   changeSidebarSetting("profile", state);

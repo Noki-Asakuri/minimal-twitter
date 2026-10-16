@@ -3,7 +3,6 @@ export const KeyListsButton = "listsButton";
 export const KeyCommunitiesButton = "communitiesButton";
 export const KeyTopicsButton = "topicsButton";
 export const KeyXPremiumButton = "xPremiumButton";
-export const KeyVerifiedOrgsButton = "verifiedOrgsButton";
 export const KeyTypefullyGrowTab = "typefullyGrowTab";
 export const KeyGrokButton = "grokButton";
 export const KeyTrendsHomeTimeline = "trendsHomeTimeline";
@@ -19,10 +18,9 @@ export const KeyHomeButton = "homeButton";
 export const KeyExploreButton = "exploreButton";
 export const KeyNotificationsButton = "notificationsButton";
 export const KeyMessagesButton = "messagesButton";
+export const KeyCallsButton = "callsButton";
 export const KeyBookmarksButton = "bookmarksButton";
 export const KeyCreatorStudioButton = "creatorStudioButton";
-export const KeyJobsButton = "jobsButton";
-export const KeyArticlesButton = "articles";
 export const KeyMoreButton = "moreButton";
 export const KeyProfileButton = "profileButton";
 export const KeyNavigationButtonsLabels = "navigationButtonsLabels";
@@ -101,16 +99,14 @@ export const allSettingsKeys = [
   KeyExploreButton,
   KeyNotificationsButton,
   KeyMessagesButton,
+  KeyCallsButton,
   KeyGrokButton,
   KeyXPremiumButton,
   KeyListsButton,
   KeyBookmarksButton,
   KeyCreatorStudioButton,
-  KeyJobsButton,
   KeyCommunitiesButton,
-  KeyArticlesButton,
   KeyTopicsButton,
-  KeyVerifiedOrgsButton,
   KeyTypefullyGrowTab,
   KeyProfileButton,
   KeyMoreButton,
@@ -175,16 +171,14 @@ export const defaultPreferences = {
   [KeyExploreButton]: "on",
   [KeyNotificationsButton]: "on",
   [KeyMessagesButton]: "on",
+  [KeyCallsButton]: "on",
   [KeyGrokButton]: "on",
   [KeyXPremiumButton]: "off",
   [KeyListsButton]: "on",
   [KeyBookmarksButton]: "on",
   [KeyCreatorStudioButton]: "on",
-  [KeyJobsButton]: "off",
   [KeyCommunitiesButton]: "on",
-  [KeyArticlesButton]: "off",
   [KeyTopicsButton]: "off",
-  [KeyVerifiedOrgsButton]: "off",
   [KeyTypefullyGrowTab]: "on",
   [KeyProfileButton]: "on",
   [KeyMoreButton]: "on",

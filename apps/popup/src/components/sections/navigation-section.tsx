@@ -1,4 +1,3 @@
-import startCase from "lodash.startcase";
 import type { ReactNode } from "react";
 
 import ControlsWrapper from "@/components/ui/controls-wrapper";
@@ -15,15 +14,14 @@ import type { StorageKey } from "@/utilities/chromeStorage";
 import useStorageKeyState from "@/utilities/useStorageKeyState";
 
 import {
-  KeyArticlesButton,
   KeyBookmarksButton,
+  KeyCallsButton,
   KeyCommunitiesButton,
   KeyCreatorStudioButton,
   KeyExploreButton,
   KeyGrokButton,
   KeyHideGrokDrawer,
   KeyHomeButton,
-  KeyJobsButton,
   KeyListsButton,
   KeyMessagesButton,
   KeyMoreButton,
@@ -35,7 +33,6 @@ import {
   KeyTopicsButton,
   KeyTypefullyGrowTab,
   KeyUnreadCountBadge,
-  KeyVerifiedOrgsButton,
   KeyXPremiumButton,
 } from "@minimal-twitter/shared";
 
@@ -54,8 +51,8 @@ function IconButton({ storageKey, label, viewBox = "0 0 24 24", children }: Icon
       <Toggle
         onPressedChange={setPressed}
         pressed={pressed}
-        title={`Toggle ${startCase(storageKey)}`}
-        aria-label={`Toggle ${startCase(storageKey)}`}
+        title={`Toggle ${label}`}
+        aria-label={`Toggle ${label}`}
         variant="outline"
         className="size-11 rounded-full p-2.5 text-foreground opacity-55 hover:opacity-100 aria-pressed:border-primary aria-pressed:bg-primary/10 aria-pressed:text-primary aria-pressed:opacity-100"
       >
@@ -110,7 +107,7 @@ function Notifications() {
 
 function Messages() {
   return (
-    <IconButton storageKey={KeyMessagesButton} label="Messages">
+    <IconButton storageKey={KeyMessagesButton} label="Chat">
       <path
         className="fill-current"
         d="M20.7 11.7c0-4.48-3.844-8.2-8.699-8.2-4.854 0-8.698 3.72-8.698 8.2v.015l-.001.014c-.02.667.09 1.225.25 1.767.083.28.176.545.276.839.098.285.202.595.288.918.177.663.284 1.401.156 2.271-.086.582-.274 1.191-.582 1.855 1.264.375 2.55.053 4.013-.599l.455-.203.437.242c1.07.594 1.917 1.08 3.406 1.08 4.855 0 8.7-3.72 8.7-8.199zm2 0c0 5.683-4.84 10.2-10.699 10.2-1.784 0-2.96-.555-3.95-1.095-1.876.768-4.02 1.2-6.245-.075l-.885-.505.524-.875c.54-.904.77-1.581.848-2.118.078-.526.02-.98-.11-1.463-.066-.25-.15-.502-.247-.788-.095-.277-.204-.59-.301-.92-.199-.674-.36-1.449-.332-2.39C1.322 6.002 6.154 1.5 12.002 1.5c5.859 0 10.7 4.518 10.7 10.2z"
@@ -138,7 +135,7 @@ function CreatorStudio() {
 
 function Bookmarks() {
   return (
-    <IconButton storageKey={KeyBookmarksButton} label="Bookmarks">
+    <IconButton storageKey={KeyBookmarksButton} label="History">
       <path
         className="fill-current"
         d="M4 4.5A2.5 2.5 0 016.5 2h11A2.5 2.5 0 0120 4.5v18.44l-8-5.71-8 5.71V4.5zM6.5 4c-.276 0-.5.22-.5.5v14.56l6-4.29 6 4.29V4.5c0-.28-.224-.5-.5-.5h-11z"
@@ -147,23 +144,14 @@ function Bookmarks() {
   );
 }
 
-function Articles() {
+function Calls() {
   return (
-    <IconButton storageKey={KeyArticlesButton} label="Articles">
+    <IconButton storageKey={KeyCallsButton} label="Calls">
       <path
         className="fill-current"
-        d="M7.164 2c-.53 0-1.039.21-1.414.586L2.586 5.75C2.21 6.125 2 6.634 2 7.164V21c0 .552.448 1 1 1h5.25c.552 0 1-.448 1-1s-.448-1-1-1H4V7.164L7.164 4h9.586v3.25c0 .552.448 1 1 1s1-.448 1-1V3c0-.552-.448-1-1-1H7.164z"
-      ></path>
-      <path
-        className="fill-current"
-        d="M7.75 6.25c-.552 0-1 .448-1 1s.448 1 1 1h6.5c.552 0 1-.448 1-1s-.448-1-1-1h-6.5zm-2.5 4.5c0-.552.448-1 1-1h6.5c.552 0 1 .448 1 1s-.448 1-1 1h-6.5c-.552 0-1-.448-1-1z"
-      ></path>
-      <path
-        className="fill-current"
-        clipRule="evenodd"
-        d="M18.75 9.086l4.414 4.414-8.5 8.5H10.25v-4.414l8.5-8.5zm1.586 4.414l-1.586-1.586L17.664 13l1.586 1.586 1.086-1.086zm-8.086 4.914l4-4L17.836 16l-4 4H12.25v-1.586z"
         fillRule="evenodd"
-      ></path>
+        d="M6.5 2H3a1 1 0 0 0-1 1c0 10.5 8.5 19 19 19a1 1 0 0 0 1-1v-3.5a1 1 0 0 0-.76-.97l-4-1a1 1 0 0 0-.95.26l-1.86 1.86a16 16 0 0 1-8.08-8.08l1.86-1.86a1 1 0 0 0 .26-.95l-1-4A1 1 0 0 0 6.5 2zM4.03 4h1.69l.67 2.69-1.91 1.91a1 1 0 0 0-.22 1.08 18 18 0 0 0 10.06 10.06 1 1 0 0 0 1.08-.22l1.91-1.91 2.69.67v1.69A17 17 0 0 1 4.03 4z"
+      />
     </IconButton>
   );
 }
@@ -223,17 +211,6 @@ function Grok() {
   );
 }
 
-function VerifiedOrgs() {
-  return (
-    <IconButton storageKey={KeyVerifiedOrgsButton} label="Verified Orgs">
-      <path
-        className="fill-current"
-        d="M7.323 2h11.443l-3 5h6.648L6.586 22.83 7.847 14H2.523l4.8-12zm1.354 2l-3.2 8h4.676l-.739 5.17L17.586 9h-5.352l3-5H8.677z"
-      ></path>
-    </IconButton>
-  );
-}
-
 function Profile() {
   return (
     <IconButton storageKey={KeyProfileButton} label="Profile">
@@ -269,41 +246,41 @@ function More() {
   );
 }
 
-function Jobs() {
-  return (
-    <IconButton storageKey={KeyJobsButton} label="Jobs">
-      <path
-        className="fill-current"
-        d="M19.5 6H17V4.5C17 3.12 15.88 2 14.5 2h-5C8.12 2 7 3.12 7 4.5V6H4.5C3.12 6 2 7.12 2 8.5v10C2 19.88 3.12 21 4.5 21h15c1.38 0 2.5-1.12 2.5-2.5v-10C22 7.12 20.88 6 19.5 6zM9 4.5c0-.28.23-.5.5-.5h5c.28 0 .5.22.5.5V6H9V4.5zm11 14c0 .28-.22.5-.5.5h-15c-.27 0-.5-.22-.5-.5v-3.04c.59.35 1.27.54 2 .54h5v1h2v-1h5c.73 0 1.41-.19 2-.54v3.04zm0-6.49c0 1.1-.9 1.99-2 1.99h-5v-1h-2v1H6c-1.1 0-2-.9-2-2V8.5c0-.28.23-.5.5-.5h15c.28 0 .5.22.5.5v3.51z"
-      />
-    </IconButton>
-  );
-}
-
 function NavigationSection() {
   return (
     <section className="flex flex-col gap-2" aria-labelledby="user-control-navigation-label">
       <SectionLabel htmlFor="user-control-navigation">Left Navigation</SectionLabel>
       <ControlsWrapper id="user-control-navigation">
-        <div className="grid grid-cols-5 gap-x-3 gap-y-3">
-          <Home />
-          <Explore />
-          <Notifications />
-          <Messages />
-          <Grok />
-          <XPremium />
-          <Bookmarks />
-          <CreatorStudio />
-          <Lists />
-          <Jobs />
-          <Communities />
-          <Articles />
-          <Topics />
-          <VerifiedOrgs />
-          <TypefullyGrow />
-          <Profile />
-          <More />
-        </div>
+        <fieldset className="flex min-w-0 flex-col gap-3">
+          <legend className="mb-3 text-xs font-medium text-muted-foreground">
+            Navigation items
+          </legend>
+          <div className="grid grid-cols-5 gap-3">
+            <Home />
+            <Explore />
+            <Notifications />
+            <Messages />
+            <Grok />
+            <Calls />
+            <XPremium />
+            <CreatorStudio />
+            <Bookmarks />
+            <Profile />
+            <More />
+          </div>
+        </fieldset>
+        <fieldset className="flex min-w-0 flex-col gap-3">
+          <legend className="mb-3 text-xs font-medium text-muted-foreground">
+            Extra shortcuts
+          </legend>
+          <p className="text-xs text-muted-foreground">Add these links to your sidebar.</p>
+          <div className="grid grid-cols-5 gap-3">
+            <Lists />
+            <Communities />
+            <Topics />
+            <TypefullyGrow />
+          </div>
+        </fieldset>
         <div className="flex flex-col gap-4">
           <Separator />
           <SwitchControl label="𝕏 Logo" storageKey={KeySidebarLogo} />

@@ -36,6 +36,8 @@ export function changeTitleNotifications(tf?: string): void {
   if (target) observer.observe(target, config);
 }
 export function changeFontFamily(fontFamily?: string): void {
+  if (fontFamily === undefined) return;
+
   if (!fontFamily || fontFamily === "default") {
     removeStyles("fontFamily");
     return;
