@@ -17,6 +17,7 @@ import {
   KeyGrokButton,
   KeyHideGrokDrawer,
   KeyHideOldReposts,
+  KeyHidePremiumPromotions,
   KeyHideReactionTweets,
   KeyHideSameAuthorReposts,
   KeyHideViewCount,
@@ -71,6 +72,7 @@ import changeHideViewCounts from "@content/modules/options/hide-view-count";
 import {
   changeChatDrawerButton,
   changeHideSearchBar,
+  changeHidePremiumPromotions,
   changeFontFamily,
   changeTitleNotifications,
   changeTransparentSearchBar,
@@ -159,6 +161,7 @@ const staticFeatures = {
     changeTitleNotifications(data[KeyTitleNotifications]);
     changeTweetButton(data[KeyTweetButton]);
     changeChatDrawerButton(data[KeyChatDrawerButton]);
+    changeHidePremiumPromotions(data[KeyHidePremiumPromotions]);
   },
   sidebar(data: Partial<Preferences>) {
     changeHomeButton(data[KeyHomeButton]);

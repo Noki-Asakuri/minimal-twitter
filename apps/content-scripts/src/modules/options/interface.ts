@@ -117,6 +117,21 @@ export function changeChatDrawerButton(chatDrawerButton?: string): void {
       break;
   }
 }
+export function changeHidePremiumPromotions(hidePremiumPromotions?: string): void {
+  switch (hidePremiumPromotions) {
+    case "on":
+      addStyles(
+        "hidePremiumPromotions",
+        `${selectors.premiumPromotions} {
+          display: none !important;
+        }`,
+      );
+      break;
+    case "off":
+      removeStyles("hidePremiumPromotions");
+      break;
+  }
+}
 export function changeHideSearchBar(searchBar?: string): void {
   switch (searchBar) {
     case "off":

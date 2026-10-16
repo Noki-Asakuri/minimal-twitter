@@ -71,6 +71,21 @@ const selectors = {
   modalUi: `${modalWrapper} > div`,
   tweetButton: `[data-testid="SideNav_NewTweet_Button"]`,
   chatDrawerButton: `[data-testid="chat-drawer-main"], [data-testid="chat-drawer-root"]`,
+  premiumPromotions: [
+    '[data-testid="verified_profile_upsell"]',
+    '[data-testid="verified_profile_visitor_upsell"]',
+    '[data-testid="profileAnalyticsUpsell"]',
+    '[data-testid="analytics-preview"]',
+    '[data-testid="super-upsell-UpsellCardRenderProperties"]',
+    '[role="menuitem"][data-testid="highlightUpsell"]',
+    '[role="menuitem"][data-testid="editWithPremium"]',
+    `${rightSidebar} aside:has(a[href^="/i/premium"])`,
+    `${mainColumn} [data-testid="inlinePrompt"]:has(a[href^="/i/premium"])`,
+    `:is(${mainColumn}, [role="dialog"]) [aria-live="polite"][role="status"]:has(a[href^="/i/premium"])`,
+    `${mainColumn} > div > div > div > div > div > div:has(> div > div > div > a[href^="/i/premium"])`,
+    `${mainColumn} > div > div > div > div > div > div > div > div > div:has(> div > div > div > a[href^="/i/premium"])`,
+    `${tweet}[tabindex="-1"] div:has(> div[style] > button ~ div a:is([href="/i/account_analytics"], [href^="/i/premium"]))`,
+  ].join(",\n"),
   // Settings
   securityAndAccountAccess: `[data-testid="accountAccessScreen"]`,
 };

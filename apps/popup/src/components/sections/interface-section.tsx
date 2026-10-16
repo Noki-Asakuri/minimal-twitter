@@ -5,6 +5,7 @@ import SwitchControl from "@/components/ui/switch-control";
 
 import {
   KeyChatDrawerButton,
+  KeyHidePremiumPromotions,
   KeySearchBar,
   KeyTitleNotifications,
   KeyTransparentSearch,
@@ -21,6 +22,7 @@ function InterfaceSection() {
         <SwitchControl label="Transparent Search Bar" storageKey={KeyTransparentSearch} />
         <SwitchControl label="Tweet Button" storageKey={KeyTweetButton} />
         <SwitchControl label="Chat Drawer Button" storageKey={KeyChatDrawerButton} />
+        <SwitchControl label="Hide Premium promotions" storageKey={KeyHidePremiumPromotions} />
         <SwitchControl label="Notifications in Title" storageKey={KeyTitleNotifications} />
       </ControlsWrapper>
     </section>
