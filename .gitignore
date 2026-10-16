@@ -46,3 +46,6 @@ bundle/firefox
 # xcode project
 xcuserdata/
 .claude
+
+# Generated popup class-merging tables
+apps/popup/src/lib/cn-tables.ts
