@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-16T15:05:00Z",
+  "title": "Design System: Minimal Twitter settings",
+  "extensions": {
+    "breakpoints": [{ "name": "narrow-popup", "value": "380px" }],
+    "motion": [
+      {
+        "name": "reduced-motion",
+        "value": "0.01ms",
+        "purpose": "Reduce animation and transition duration when requested."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Category tab",
+      "kind": "nav",
+      "description": "Section anchor within the four-category settings index.",
+      "html": "<a class=\"settings-tab\" href=\"#feed\" aria-current=\"location\">Feed</a>",
+      "css": ".settings-tab { min-height:36px; padding:6px 12px; border:0; border-radius:8px; font:500 12px 'Geist Variable',sans-serif; background:#fff; color:#2364d8; }"
+    },
+    {
+      "name": "Navigation choice",
+      "kind": "chip",
+      "description": "Labeled sidebar destination toggle.",
+      "html": "<button class=\"navigation-toggle\" aria-pressed=\"true\">Home <span aria-hidden=\"true\">●</span></button>",
+      "css": ".navigation-toggle { display:flex; justify-content:space-between; gap:10px; min-height:43px; padding:10px; border:0; border-radius:9px; background:#e8f5fd; color:#2364d8; font:500 12px 'Geist Variable',sans-serif; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "A short, readable settings index",
+    "overview": "Clean editorial settings with neutral surfaces and one blue accent. Categories separate feed, navigation, appearance, and additional tools.",
+    "keyCharacteristics": [
+      "Fixed header with original attribution and updated-fork link",
+      "Scrollable category content",
+      "Labeled navigation choices"
+    ],
+    "rules": [
+      {
+        "name": "Preserve setting behavior",
+        "body": "Keep storage keys and automatic saving intact; keep all sections mounted.",
+        "section": "components"
+      }
+    ],
+    "dos": ["Use semantic colors and keyboard-accessible controls."],
+    "donts": ["Do not introduce a save button or decorative imagery."]
+  }
+}

@@ -4,11 +4,8 @@ import ControlsWrapper from "@/components/ui/controls-wrapper";
 import { Field, FieldLabel } from "@/components/ui/field";
 import SectionLabel from "@/components/ui/section-label";
 import { SegmentedControl } from "@/components/ui/segmented-control";
-import { Separator } from "@/components/ui/separator";
 import SwitchControl from "@/components/ui/switch-control";
 import { Toggle } from "@/components/ui/toggle";
-
-import { cn } from "@/lib/utils";
 
 import type { StorageKey } from "@/utilities/chromeStorage";
 import useStorageKeyState from "@/utilities/useStorageKeyState";
@@ -47,28 +44,19 @@ function IconButton({ storageKey, label, viewBox = "0 0 24 24", children }: Icon
   const [pressed, setPressed] = useStorageKeyState(storageKey);
 
   return (
-    <div className="flex flex-col items-center gap-0.5">
-      <Toggle
-        onPressedChange={setPressed}
-        pressed={pressed}
-        title={`Toggle ${label}`}
-        aria-label={`Toggle ${label}`}
-        variant="outline"
-        className="size-11 rounded-full p-2.5 text-foreground opacity-55 hover:opacity-100 aria-pressed:border-primary aria-pressed:bg-primary/10 aria-pressed:text-primary aria-pressed:opacity-100"
-      >
-        <svg className="size-6" aria-hidden="true" viewBox={viewBox}>
-          {children}
-        </svg>
-      </Toggle>
-      <span
-        className={cn(
-          "max-w-16 text-center text-[11px] leading-tight tracking-tight text-muted-foreground",
-          pressed && "font-semibold text-primary",
-        )}
-      >
-        {label}
-      </span>
-    </div>
+    <Toggle
+      onPressedChange={setPressed}
+      pressed={pressed}
+      title={`Show ${label} in navigation`}
+      aria-label={`Show ${label} in navigation`}
+      className="navigation-toggle"
+    >
+      <svg className="size-5" aria-hidden="true" viewBox={viewBox}>
+        {children}
+      </svg>
+      <span className="flex-1 text-left">{label}</span>
+      <span className="navigation-indicator" aria-hidden="true" />
+    </Toggle>
   );
 }
 
@@ -248,14 +236,17 @@ function More() {
 
 function NavigationSection() {
   return (
-    <section className="flex flex-col gap-2" aria-labelledby="user-control-navigation-label">
-      <SectionLabel htmlFor="user-control-navigation">Left Navigation</SectionLabel>
+    <section className="flex flex-col gap-4" aria-labelledby="user-control-navigation-label">
+      <SectionLabel
+        htmlFor="user-control-navigation"
+        description="Keep the destinations you actually use."
+      >
+        Navigation
+      </SectionLabel>
       <ControlsWrapper id="user-control-navigation">
-        <fieldset className="flex min-w-0 flex-col gap-3">
-          <legend className="mb-3 text-xs font-medium text-muted-foreground">
-            Navigation items
-          </legend>
-          <div className="grid grid-cols-5 gap-3">
+        <fieldset className="navigation-group flex min-w-0 flex-col gap-3">
+          <legend className="mb-3 text-sm font-semibold">Navigation items</legend>
+          <div className="grid grid-cols-2 gap-2">
             <Home />
             <Explore />
             <Notifications />
@@ -269,20 +260,20 @@ function NavigationSection() {
             <More />
           </div>
         </fieldset>
-        <fieldset className="flex min-w-0 flex-col gap-3">
-          <legend className="mb-3 text-xs font-medium text-muted-foreground">
-            Extra shortcuts
-          </legend>
+        <fieldset className="navigation-group flex min-w-0 flex-col gap-3">
+          <legend className="mb-3 text-sm font-semibold">Extra shortcuts</legend>
           <p className="text-xs text-muted-foreground">Add these links to your sidebar.</p>
-          <div className="grid grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 gap-2">
             <Lists />
             <Communities />
             <Topics />
             <TypefullyGrow />
           </div>
         </fieldset>
-        <div className="flex flex-col gap-4">
-          <Separator />
+      </ControlsWrapper>
+      <ControlsWrapper id="user-control-navigation-layout">
+        <div className="flex flex-col">
+          <h3 className="settings-group-title">Labels & layout</h3>
           <SwitchControl label="𝕏 Logo" storageKey={KeySidebarLogo} />
           <Field orientation="horizontal">
             <FieldLabel className="whitespace-nowrap">Show Labels</FieldLabel>

@@ -12,8 +12,12 @@ type ControlsWrapperProps = {
 
 function ControlsWrapper({ id, className = "", children }: ControlsWrapperProps) {
   return (
-    <Card id={id || "user-control-timeline"} size="sm" className={cn("py-0", className)}>
-      <CardContent className="flex flex-col gap-4 p-4">{children}</CardContent>
+    <Card
+      id={id || "user-control-timeline"}
+      size="sm"
+      className={cn("settings-group py-0 ring-0", className)}
+    >
+      <CardContent className="flex flex-col gap-0 px-4 py-1">{children}</CardContent>
     </Card>
   );
 }

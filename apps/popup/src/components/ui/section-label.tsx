@@ -3,17 +3,23 @@ import type { ReactNode } from "react";
 type SectionLabelProps = {
   htmlFor?: string;
   className?: string;
+  description?: string;
   children?: ReactNode;
 };
 
-function SectionLabel({ htmlFor, className = "", children }: SectionLabelProps) {
+function SectionLabel({ htmlFor, className = "", description, children }: SectionLabelProps) {
   return (
-    <h2
-      id={`${htmlFor || "user-control-interface"}-label`}
-      className={`px-1 text-xs font-semibold tracking-wide text-muted-foreground ${className}`}
-    >
-      {children || "Interface"}
-    </h2>
+    <div className={`section-heading ${className}`}>
+      <h2
+        id={`${htmlFor || "user-control-interface"}-label`}
+        className="text-2xl font-semibold tracking-tight"
+      >
+        {children || "Interface"}
+      </h2>
+      {description && (
+        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{description}</p>
+      )}
+    </div>
   );
 }
 

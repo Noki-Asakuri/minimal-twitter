@@ -12,8 +12,13 @@ import {
 
 function ShareMenuSection() {
   return (
-    <section className="flex flex-col gap-2" aria-labelledby="user-control-share-menu-label">
-      <SectionLabel htmlFor="user-control-share-menu">Share Menu</SectionLabel>
+    <section className="flex flex-col gap-4" aria-labelledby="user-control-share-menu-label">
+      <SectionLabel
+        htmlFor="user-control-share-menu"
+        description="Choose which actions appear when you share a post."
+      >
+        Sharing
+      </SectionLabel>
       <ControlsWrapper id="user-control-share-menu">
         <SwitchControl
           label="Send via Direct Message"

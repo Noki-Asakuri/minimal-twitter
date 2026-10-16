@@ -3,7 +3,6 @@ import "./styles/globals.css";
 import { createRoot } from "react-dom/client";
 
 import Main from "./components/main";
-import Footer from "./components/sections/footer";
 import Header from "./components/sections/header";
 import Container from "./components/ui/container";
 
@@ -17,7 +16,6 @@ function App() {
     <Container>
       <Header />
       <Main />
-      <Footer />
     </Container>
   );
 }

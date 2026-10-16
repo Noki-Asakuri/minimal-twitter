@@ -6,7 +6,7 @@ type ContainerProps = {
 
 function Container({ children }: ContainerProps) {
   return (
-    <div className="relative flex w-[420px] max-w-full flex-col font-sans font-normal text-foreground">
+    <div className="popup-shell relative flex w-[440px] max-w-full flex-col font-sans font-normal text-foreground">
       {children}
     </div>
   );

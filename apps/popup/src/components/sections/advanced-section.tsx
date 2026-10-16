@@ -50,9 +50,14 @@ function AdvancedSection() {
   }, []);
 
   return (
-    <section className="flex flex-col gap-2" aria-labelledby="user-control-advanced-label">
-      <div className="flex items-center justify-between">
-        <SectionLabel htmlFor="user-control-advanced">Advanced</SectionLabel>
+    <section className="flex flex-col gap-4" aria-labelledby="user-control-advanced-label">
+      <div className="flex flex-col items-start gap-3">
+        <SectionLabel
+          htmlFor="user-control-advanced"
+          description="Make X your own with custom CSS."
+        >
+          Advanced
+        </SectionLabel>
         <Button variant="ghost" size="xs" onClick={() => setShowEditor((visible) => !visible)}>
           {showEditor ? "Hide CSS Editor" : "Show CSS Editor"}
         </Button>
@@ -65,7 +70,7 @@ function AdvancedSection() {
               className="w-full text-sm"
               theme="dark"
               value={cssText}
-              placeholder="// Write custom CSS here..."
+              placeholder="/* Write custom CSS here */"
               height="300px"
               extensions={[css()]}
               onChange={onChange}

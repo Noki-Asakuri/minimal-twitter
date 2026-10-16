@@ -32,92 +32,97 @@ function TimelineSection() {
   const mounted = useMounted();
 
   return (
-    <section className="flex flex-col gap-2" aria-labelledby="user-control-timeline-label">
-      <SectionLabel htmlFor="user-control-timeline">Timeline</SectionLabel>
+    <section className="flex flex-col gap-4" aria-labelledby="user-control-timeline-label">
+      <SectionLabel
+        htmlFor="user-control-timeline"
+        description="Shape what you see. Leave the distractions out."
+      >
+        Your feed
+      </SectionLabel>
       {mounted ? (
-        <ControlsWrapper id="user-control-timeline">
-          <TimelineWidthSlider />
-          <Field orientation="horizontal">
-            <FieldLabel className="whitespace-nowrap">Default Media View</FieldLabel>
-            <SegmentedControl
-              storageKey={KeyProfileMediaDefaultView}
-              segments={[
-                { value: "videos", label: "Videos" },
-                { value: "images", label: "Images" },
-              ]}
+        <>
+          <ControlsWrapper id="user-control-timeline">
+            <h3 className="settings-group-title">Layout & reading</h3>
+            <TimelineWidthSlider />
+            <Field orientation="horizontal">
+              <FieldLabel className="whitespace-nowrap">Default Media View</FieldLabel>
+              <SegmentedControl
+                storageKey={KeyProfileMediaDefaultView}
+                segments={[
+                  { value: "videos", label: "Videos" },
+                  { value: "images", label: "Images" },
+                ]}
+              />
+            </Field>
+            <Separator />
+            <SwitchControl label="Zen Writer Mode" storageKey={KeyWriterMode} />
+            <SwitchControl label="Sticky Header" storageKey={KeyStickyHeader} />
+            <SwitchControl label="Trends on Home Timeline" storageKey={KeyTrendsHomeTimeline} />
+          </ControlsWrapper>
+          <ControlsWrapper id="user-control-feed-filters">
+            <h3 className="settings-group-title">Hide distractions</h3>
+            <VanityCheckboxes />
+            <LocalStorageCheckboxControl
+              label="View Count from Tweets"
+              storageKey={KeyHideViewCount}
+              crossedIcon
             />
-          </Field>
-          <Separator />
-          <SwitchControl label="Zen Writer Mode" storageKey={KeyWriterMode} />
-          <SwitchControl label="Sticky Header" storageKey={KeyStickyHeader} />
-          <SwitchControl label="Trends on Home Timeline" storageKey={KeyTrendsHomeTimeline} />
-          <Separator />
-          <h3 className="text-xs font-semibold tracking-wide text-muted-foreground">
-            Remove Distracting Elements
-          </h3>
-          <VanityCheckboxes />
-          <LocalStorageCheckboxControl
-            label="View Count from Tweets"
-            storageKey={KeyHideViewCount}
-            crossedIcon
-          />
-          <LocalStorageCheckboxControl
-            label="Reposts from Same Author"
-            storageKey={KeyHideSameAuthorReposts}
-            crossedIcon
-          />
-          <LocalStorageCheckboxControl
-            label="Reposts Older Than a Year"
-            storageKey={KeyHideOldReposts}
-            crossedIcon
-          />
-          <LocalStorageCheckboxControl
-            label="Reaction Tweets"
-            storageKey={KeyHideReactionTweets}
-            crossedIcon
-          />
-          <LocalStorageCheckboxControl
-            label="Promoted Posts"
-            storageKey={KeyRemovePromotedPosts}
-            crossedIcon
-          />
-          <LocalStorageCheckboxControl
-            label="Topics to Follow Suggestions"
-            storageKey={KeyRemoveTopicsToFollow}
-            crossedIcon
-          />
-          <LocalStorageCheckboxControl
-            label={`Timeline Tabs (For you, Following, lists...)`}
-            storageKey={KeyRemoveTimelineTabs}
-            crossedIcon
-          />
-          <LocalStorageCheckboxControl
-            label="Timeline Borders"
-            storageKey={KeyRemoveTimelineBorders}
-            crossedIcon
-          />
-          <LocalStorageCheckboxControl
-            label="Tweet Borders"
-            storageKey={KeyRemoveTweetBorders}
-            crossedIcon
-          />
-        </ControlsWrapper>
+            <LocalStorageCheckboxControl
+              label="Repeated reposts from the same author"
+              storageKey={KeyHideSameAuthorReposts}
+              crossedIcon
+            />
+            <LocalStorageCheckboxControl
+              label="Reposts older than a year"
+              storageKey={KeyHideOldReposts}
+              crossedIcon
+            />
+            <LocalStorageCheckboxControl
+              label="Reaction Tweets"
+              storageKey={KeyHideReactionTweets}
+              crossedIcon
+            />
+            <LocalStorageCheckboxControl
+              label="Promoted Posts"
+              storageKey={KeyRemovePromotedPosts}
+              crossedIcon
+            />
+            <LocalStorageCheckboxControl
+              label="Topics to Follow Suggestions"
+              storageKey={KeyRemoveTopicsToFollow}
+              crossedIcon
+            />
+            <LocalStorageCheckboxControl
+              label={`Timeline Tabs (For you, Following, lists...)`}
+              storageKey={KeyRemoveTimelineTabs}
+              crossedIcon
+            />
+            <LocalStorageCheckboxControl
+              label="Timeline Borders"
+              storageKey={KeyRemoveTimelineBorders}
+              crossedIcon
+            />
+            <LocalStorageCheckboxControl
+              label="Tweet Borders"
+              storageKey={KeyRemoveTweetBorders}
+              crossedIcon
+            />
+          </ControlsWrapper>
+        </>
       ) : (
         <ControlsWrapper className="h-[116px]">
           <Skeleton className="h-full w-full" />
         </ControlsWrapper>
       )}
-      <p className="px-3 pt-1 pb-2 text-center text-xs leading-5 font-medium text-muted-foreground">
-        View more 𝕏 display settings{" "}
+      <p className="text-xs leading-5 text-muted-foreground">
         <a
-          href="https://twitter.com/i/display"
+          href="https://x.com/i/display"
           target="_blank"
           rel="noreferrer"
           className="font-semibold text-primary underline-offset-4 hover:underline"
         >
-          here
+          Open X display settings
         </a>
-        .
       </p>
     </section>
   );
