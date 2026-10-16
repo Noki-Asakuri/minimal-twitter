@@ -9,7 +9,6 @@ export const KeyTrendsHomeTimeline = "trendsHomeTimeline";
 export const KeyRemoveTimelineTabs = "removeTimelineTabs";
 export const KeyWriterMode = "writerMode";
 export const KeyTimelineWidth = "timelineWidth";
-export const KeyProfileMediaDefaultView = "profileMediaDefaultView";
 export const KeyRemoveTimelineBorders = "timelineBorders";
 export const KeyRemoveTweetBorders = "tweetBorders";
 export const KeyStickyHeader = "stickyHeader";
@@ -59,7 +58,6 @@ export const allSettingsKeys = [
 
   // Timeline Features
   KeyTimelineWidth,
-  KeyProfileMediaDefaultView,
   KeyRemoveTimelineBorders,
   KeyRemoveTweetBorders,
   KeyStickyHeader,
@@ -131,7 +129,6 @@ export const defaultPreferences = {
 
   // Timeline Features
   [KeyTimelineWidth]: 700,
-  [KeyProfileMediaDefaultView]: "videos",
   [KeyRemoveTimelineBorders]: "off",
   [KeyRemoveTweetBorders]: "off",
   [KeyStickyHeader]: "on",

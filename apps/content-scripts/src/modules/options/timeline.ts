@@ -38,23 +38,6 @@ export function addNewPostsPillCloseButton(): void {
   }
 }
 
-export function changeProfileMediaDefaultView(defaultView?: string): void {
-  const mediaTab = Array.from(
-    document.querySelectorAll<HTMLElement>(`${selectors.mainColumn} [role="tab"][href]`),
-  ).find((tab) => {
-    const href = tab.getAttribute("href");
-    if (!href) return false;
-    const url = new URL(href, window.location.origin);
-    return /^\/[A-Za-z0-9_]+\/media\/?$/.test(url.pathname);
-  });
-  if (!mediaTab) return;
-  const mediaHref = mediaTab.getAttribute("href");
-  if (!mediaHref) return;
-  const mediaUrl = new URL(mediaHref, window.location.origin);
-  if (defaultView === "images") mediaUrl.searchParams.set("filter", "photo");
-  else mediaUrl.searchParams.delete("filter");
-  mediaTab.setAttribute("href", `${mediaUrl.pathname}${mediaUrl.search}`);
-}
 export function changeTimelineWidth(timelineWidth?: number): void {
   switch (timelineWidth) {
     case 600:
