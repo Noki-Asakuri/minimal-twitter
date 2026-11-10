@@ -99,6 +99,7 @@ import {
 } from "@content/modules/options/navigation";
 import { changeRepostFilters } from "@content/modules/options/reposts";
 import {
+  changeCopiedShareLinks,
   changeDownloadVideoShareMenu,
   changePostVideoShareMenu,
   changeSendViaChatShareMenu,
@@ -177,6 +178,7 @@ const staticFeatures = {
     changeCustomCss(data[KeyCustomCss]);
   },
   shareMenu(data: Partial<Preferences>) {
+    changeCopiedShareLinks(data);
     changeSendViaDirectMessageShareMenu(data[KeySendViaDirectMessageShareMenu]);
     changeSendViaChatShareMenu(data[KeySendViaChatShareMenu]);
     changeSharePostViaShareMenu(data[KeySharePostViaShareMenu]);

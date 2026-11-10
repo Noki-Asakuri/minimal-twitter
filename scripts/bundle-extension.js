@@ -64,6 +64,12 @@ const MANIFEST_CHROME = {
   },
   content_scripts: [
     {
+      run_at: "document_start",
+      matches: ["https://twitter.com/*", "https://mobile.twitter.com/*", "https://x.com/*"],
+      js: ["dist/share-links.js"],
+      world: "MAIN",
+    },
+    {
       run_at: "document_end",
       matches: ["https://twitter.com/*", "https://mobile.twitter.com/*", "https://x.com/*"],
       js: ["dist/main.js"],
@@ -106,6 +112,12 @@ const MANIFEST_FIREFOX = {
     persistent: false,
   },
   content_scripts: [
+    {
+      run_at: "document_start",
+      matches: ["https://twitter.com/*", "https://mobile.twitter.com/*", "https://x.com/*"],
+      js: ["dist/share-links.js"],
+      world: "MAIN",
+    },
     {
       run_at: "document_idle",
       matches: ["https://twitter.com/*", "https://mobile.twitter.com/*", "https://x.com/*"],

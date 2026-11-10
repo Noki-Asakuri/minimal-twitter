@@ -51,6 +51,8 @@ export const KeySendViaDirectMessageShareMenu = "sendViaDirectMessageShareMenu";
 export const KeySharePostViaShareMenu = "sharePostViaShareMenu";
 export const KeyPostVideoShareMenu = "postVideoShareMenu";
 export const KeyDownloadVideoShareMenu = "downloadVideoShareMenu";
+export const KeyUseFixupx = "useFixupx";
+export const KeyRemoveShareLinkTracking = "removeShareLinkTracking";
 
 export const allSettingsKeys = [
   // Extension Status
@@ -115,6 +117,8 @@ export const allSettingsKeys = [
   KeySharePostViaShareMenu,
   KeyPostVideoShareMenu,
   KeyDownloadVideoShareMenu,
+  KeyUseFixupx,
+  KeyRemoveShareLinkTracking,
 
   // Advanced Features
   KeyCustomCss,
@@ -186,6 +190,8 @@ export const defaultPreferences = {
   [KeySharePostViaShareMenu]: "on",
   [KeyPostVideoShareMenu]: "on",
   [KeyDownloadVideoShareMenu]: "on",
+  [KeyUseFixupx]: "off",
+  [KeyRemoveShareLinkTracking]: "off",
 
   // Advanced Features
   [KeyCustomCss]: "",

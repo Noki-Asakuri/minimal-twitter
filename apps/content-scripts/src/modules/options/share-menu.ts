@@ -1,4 +1,18 @@
+import type { Preferences } from "@minimal-twitter/shared";
+import { KeyRemoveShareLinkTracking, KeyUseFixupx } from "@minimal-twitter/shared";
+
 import addStyles, { removeStyles } from "@content/modules/utilities/add-styles";
+
+export function changeCopiedShareLinks(data: Partial<Preferences>): void {
+  if (data[KeyUseFixupx] !== undefined) {
+    document.documentElement.dataset.minimalTwitterUseFixupx = data[KeyUseFixupx];
+  }
+  if (data[KeyRemoveShareLinkTracking] !== undefined) {
+    document.documentElement.dataset.minimalTwitterRemoveShareLinkTracking =
+      data[KeyRemoveShareLinkTracking];
+  }
+}
+
 const sendViaDirectMessageMenuItem =
   'div[role="menuitem"]:has(path[clip-rule="evenodd"][d^="M8.902"])';
 const sendViaChatMenuItem =

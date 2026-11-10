@@ -5,9 +5,11 @@ import SwitchControl from "@/components/ui/switch-control";
 import {
   KeyDownloadVideoShareMenu,
   KeyPostVideoShareMenu,
+  KeyRemoveShareLinkTracking,
   KeySendViaChatShareMenu,
   KeySendViaDirectMessageShareMenu,
   KeySharePostViaShareMenu,
+  KeyUseFixupx,
 } from "@minimal-twitter/shared";
 
 function ShareMenuSection() {
@@ -15,7 +17,7 @@ function ShareMenuSection() {
     <section className="flex flex-col gap-4" aria-labelledby="user-control-share-menu-label">
       <SectionLabel
         htmlFor="user-control-share-menu"
-        description="Choose which actions appear when you share a post."
+        description="Choose share menu actions and customize copied post links."
       >
         Sharing
       </SectionLabel>
@@ -28,6 +30,11 @@ function ShareMenuSection() {
         <SwitchControl label="Share post via..." storageKey={KeySharePostViaShareMenu} />
         <SwitchControl label="Post Video" storageKey={KeyPostVideoShareMenu} />
         <SwitchControl label="Download Video" storageKey={KeyDownloadVideoShareMenu} />
+        <SwitchControl label="Use fixupx.com for copied links" storageKey={KeyUseFixupx} />
+        <SwitchControl
+          label="Remove tracking from copied links"
+          storageKey={KeyRemoveShareLinkTracking}
+        />
       </ControlsWrapper>
     </section>
   );
